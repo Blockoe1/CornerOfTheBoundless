@@ -32,8 +32,9 @@ namespace COTB.Overworld
         /// <summary>
         /// Movement
         /// </summary>
-        private Vector3 targetVelocity;
-        private Vector3 currentVelocity;
+        private Vector3 targetDirection;
+        [SerializeField] private float targetSpeed;
+        private float currentSpeed;
         private bool isMoving;
 
         #region Component References
@@ -57,10 +58,13 @@ namespace COTB.Overworld
         {
             moveAction = InputSystem.actions.FindAction(MOVE_ACTION_NAME);
             moveAction.performed += MoveAction_performed;
+            moveAction.canceled += MoveAction_canceled;
         }
+
         private void OnDestroy()
         {
             moveAction.performed -= MoveAction_performed;
+            moveAction.canceled -= MoveAction_canceled;
         }
 
         /// <summary>
@@ -70,12 +74,24 @@ namespace COTB.Overworld
         private void MoveAction_performed(InputAction.CallbackContext obj)
         {
             Vector2 moveInput = obj.ReadValue<Vector2>();
+            targetSpeed = maxSpeed;
             // Update the target velocity that the player is moving towards.
-            targetVelocity = new Vector3(moveInput.x, 0, moveInput.y) * maxSpeed;
+            // Make sure the max this vector can be is the normal vector.
+            targetDirection = Vector3.ClampMagnitude(new Vector3(moveInput.x, 0, moveInput.y), 1);
             if (!isMoving)
             {
                 StartCoroutine(MoveRoutine());
             }
+        }
+
+        /// <summary>
+        /// Reset target speed and direction when the player is no longer inputting.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void MoveAction_canceled(InputAction.CallbackContext obj)
+        {
+            targetSpeed = 0;
+            targetDirection = Vector3.zero;
         }
 
         /// <summary>
@@ -85,17 +101,18 @@ namespace COTB.Overworld
         private IEnumerator MoveRoutine()
         {
             isMoving = true;
-            while (currentVelocity != Vector3.zero || targetVelocity != Vector3.zero)
+            // Move while the player has speed or is inputting some movement.
+            while (currentSpeed != 0 || targetDirection != Vector3.zero)
             {
-                Debug.Log("Accelerating");
+                //Debug.Log("Accelerating");
                 // Apply 1/2 of the acceleration before movement.
-                currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, acceleration * Time.deltaTime / 2);
+                currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime / 2);
 
                 // Continually update the destination of the player's NavMesh agent to move in the direction of input.
-                navAgent.Move(currentVelocity * Time.deltaTime);
+                navAgent.Move(currentSpeed * Time.deltaTime * targetDirection);
 
                 // Apply the second half after movement.  This is technically move accurate.
-                currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, acceleration * Time.deltaTime / 2);
+                currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime / 2);
 
                 yield return null;
             }
