@@ -1,10 +1,7 @@
 {
-    "name": "Overworld",
-    "rootNamespace": "COTB.Overworld",
-    "references": [
-        "GUID:fc231e386a4921e47a09f324b9fd8446",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
-    ],
+    "name": "Core",
+    "rootNamespace": "COTB",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
