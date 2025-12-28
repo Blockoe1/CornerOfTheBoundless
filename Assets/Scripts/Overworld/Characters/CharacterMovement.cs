@@ -33,7 +33,7 @@ namespace COTB.Overworld
         /// Movement
         /// </summary>
         private Vector3 targetDirection;
-        [SerializeField] private float targetSpeed;
+        private float targetSpeed;
         private float currentSpeed;
         private bool isMoving;
 
@@ -91,7 +91,7 @@ namespace COTB.Overworld
         private void MoveAction_canceled(InputAction.CallbackContext obj)
         {
             targetSpeed = 0;
-            targetDirection = Vector3.zero;
+            //targetDirection = Vector3.zero;
         }
 
         /// <summary>
