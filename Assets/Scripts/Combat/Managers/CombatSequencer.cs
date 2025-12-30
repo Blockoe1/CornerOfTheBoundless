@@ -21,7 +21,7 @@ namespace COTB.Combat
 
         public CombatSequencer()
         {
-            CombatActor.OnQueueComplete += UpdateSlowmode;
+            CombatQueue.OnQueueComplete += UpdateSlowmode;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace COTB.Combat
         /// </summary>
         private void CleanUp()
         {
-            CombatActor.OnQueueComplete -= UpdateSlowmode;
+            CombatQueue.OnQueueComplete -= UpdateSlowmode;
             flagNull = true;
         }
     }
