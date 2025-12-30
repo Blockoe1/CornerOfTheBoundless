@@ -300,6 +300,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1329203659}
   - component: {fileID: 1329203658}
+  - component: {fileID: 1329203661}
+  - component: {fileID: 1329203660}
+  - component: {fileID: 1329203662}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -380,6 +383,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329203660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329203657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e50f411e0457a747be0aca4db191427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.SlowmodeController
+  OnSlowmodeEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1329203661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329203657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03786bd279d30b45a48d653ffe506bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.CombatActor
+  debugTarget: {fileID: 1584960278}
+  debugCommand: {fileID: 0}
+--- !u!114 &1329203662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329203657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d55be46e29384880fc24826aa29e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.CombatTarget
 --- !u!1 &1457071644
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +535,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1584960275}
   - component: {fileID: 1584960274}
+  - component: {fileID: 1584960277}
+  - component: {fileID: 1584960276}
+  - component: {fileID: 1584960278}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -571,6 +618,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584960276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03786bd279d30b45a48d653ffe506bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.CombatActor
+  debugTarget: {fileID: 1329203662}
+  debugCommand: {fileID: 0}
+--- !u!114 &1584960277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e50f411e0457a747be0aca4db191427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.SlowmodeController
+  OnSlowmodeEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1584960278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d55be46e29384880fc24826aa29e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Combat::COTB.Combat.CombatTarget
 --- !u!1 &1914428915
 GameObject:
   m_ObjectHideFlags: 0

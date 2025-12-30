@@ -1,6 +1,6 @@
 /*****************************************************************************
 // File Name : CharacterSelector.cs
-// Author : Brandon Koederitz
+// Author : Eli Koederitz
 // Creation Date : 12/29/2025
 // Last Modified : 12/29/2025
 //
