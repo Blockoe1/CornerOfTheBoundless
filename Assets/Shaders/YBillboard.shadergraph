@@ -2059,7 +2059,7 @@
     "m_ObjectId": "4df84f60e20e4fe694566415b1d0b16e",
     "m_Title": "Render Sprite Texture",
     "m_Position": {
-        "x": -622.66650390625,
+        "x": -622.666748046875,
         "y": 630.0001220703125
     }
 }
@@ -2560,8 +2560,8 @@
     "m_ObjectId": "75e2b913f8164eafb9776be2da1440c5",
     "m_Title": "Create a Transformation Matrix to Rotate the Verticies.",
     "m_Position": {
-        "x": -1536.0,
-        "y": -361.9999694824219
+        "x": -1536.000244140625,
+        "y": -362.00006103515627
     }
 }
 
@@ -3294,8 +3294,8 @@
     "m_ObjectId": "aef08db8cc534b908e96cc86dc8aa54e",
     "m_Title": "Angle Between Object and Camera",
     "m_Position": {
-        "x": -2505.99951171875,
-        "y": -254.66668701171876
+        "x": -2505.999755859375,
+        "y": -254.666748046875
     }
 }
 
@@ -4204,7 +4204,7 @@
     "m_ObjectId": "f21ec705758d48d9aef10a827f7e6a81",
     "m_Title": "Calculate Vertex Positions",
     "m_Position": {
-        "x": -2595.3330078125,
+        "x": -2595.333251953125,
         "y": 348.6666259765625
     }
 }

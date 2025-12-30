@@ -6,6 +6,7 @@
 //
 // Brief Description : Command component for healing a target.
 *****************************************************************************/
+using System.Collections;
 using UnityEngine;
 
 namespace COTB.Combat

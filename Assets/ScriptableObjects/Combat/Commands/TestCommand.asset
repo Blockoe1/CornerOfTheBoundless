@@ -16,10 +16,11 @@ MonoBehaviour:
   commandDescription: 
   commandComponents:
   - rid: 1420671976042135637
+  commandModifiers: []
   references:
     version: 2
     RefIds:
     - rid: 1420671976042135637
       type: {class: Attack, ns: COTB.Combat, asm: Combat}
       data:
-        attackMultiplier: 0
+        attackMultiplier: 2

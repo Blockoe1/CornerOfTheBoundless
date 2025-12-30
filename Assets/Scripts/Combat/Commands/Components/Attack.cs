@@ -22,7 +22,14 @@ namespace COTB.Combat
         /// <param name="actor"></param>
         public override void ExecuteComponent(CombatTarget[] targets, CombatActor actor)
         {
-            throw new System.NotImplementedException();
+            // Deal damage to all the passed in targets.
+            foreach(CombatTarget target in targets)
+            {
+                // Using attack multiplier as a placeholder until I get stats figured out.
+                target.TakeDamage((int)attackMultiplier);
+                Debug.Log("Dealt " + attackMultiplier + " damage to target " + target.name);
+                // TODO implement getting stats.
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace COTB.Combat
         [SerializeField, TextArea] private string commandDescription;
 
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
+        [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
 
         /// <summary>
         /// Controls the main logic of the command.
@@ -27,7 +28,12 @@ namespace COTB.Combat
         /// <returns></returns>
         public IEnumerator CommandMain(CombatTarget[] targets,  CombatActor actor)
         {
-            yield return null;
+            // Loop through each component and apply it's effects.
+            foreach(CommandComponent component in commandComponents)
+            {
+                component.ExecuteComponent(targets, actor);
+                yield return null;
+            }
         }
     }
 }

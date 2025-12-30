@@ -6,6 +6,7 @@
 //
 // Brief Description : Specifies a component that makes up part of a given command.
 *****************************************************************************/
+using System.Collections;
 using UnityEngine;
 
 namespace COTB.Combat

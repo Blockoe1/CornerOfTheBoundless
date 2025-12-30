@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CombatActor
   debugTarget: {fileID: 1584960278}
-  debugCommand: {fileID: 0}
+  debugCommand: {fileID: 11400000, guid: bd1a5c4c0997bcb46b5c9f2605164bc5, type: 2}
 --- !u!114 &1329203662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d55be46e29384880fc24826aa29e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CombatTarget
+  health: 5
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1457071644
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,8 +539,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1584960275}
   - component: {fileID: 1584960274}
-  - component: {fileID: 1584960277}
   - component: {fileID: 1584960276}
+  - component: {fileID: 1584960277}
   - component: {fileID: 1584960278}
   m_Layer: 0
   m_Name: TestCharacter
@@ -631,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CombatActor
   debugTarget: {fileID: 1329203662}
-  debugCommand: {fileID: 0}
+  debugCommand: {fileID: 11400000, guid: bd1a5c4c0997bcb46b5c9f2605164bc5, type: 2}
 --- !u!114 &1584960277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d55be46e29384880fc24826aa29e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CombatTarget
+  health: 5
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1914428915
 GameObject:
   m_ObjectHideFlags: 0

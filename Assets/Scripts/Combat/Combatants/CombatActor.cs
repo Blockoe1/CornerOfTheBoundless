@@ -43,7 +43,8 @@ namespace COTB.Combat
         /// </summary>
         public void PerformCommand(Command toPerform, CombatTarget[] targets)
         {
-
+            // Add the command's main function to the queue.
+            AddToQueue(toPerform.CommandMain(targets, this));
         }
 
         #region Queue

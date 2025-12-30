@@ -1,22 +1,18 @@
 /*****************************************************************************
-// File Name : ApplyEffect.cs
+// File Name : DamageHeal.cs
 // Author : Eli Koederitz
 // Creation Date : 12/30/2025
 // Last Modified : 12/30/2025
 //
-// Brief Description : Applies a combat effect to the target.
+// Brief Description : Modifies a command so that the user heals when the command deals damage.
 *****************************************************************************/
-using System.Collections;
 using UnityEngine;
 
 namespace COTB.Combat
 {
     [System.Serializable]
-    public class ApplyEffect : CommandComponent
+    public class DamageHeal : CommandModifier
     {
-        public override void ExecuteComponent(CombatTarget[] targets, CombatActor actor)
-        {
-            throw new System.NotImplementedException();
-        }
+        [SerializeField] private float healingRatio;
     }
 }

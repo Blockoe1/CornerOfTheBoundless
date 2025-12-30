@@ -1,22 +1,18 @@
 /*****************************************************************************
-// File Name : ApplyEffect.cs
+// File Name : CommandModifier.cs
 // Author : Eli Koederitz
 // Creation Date : 12/30/2025
 // Last Modified : 12/30/2025
 //
-// Brief Description : Applies a combat effect to the target.
+// Brief Description : Base class for modifiers that have triggered effects for certain commands.
 *****************************************************************************/
-using System.Collections;
 using UnityEngine;
 
 namespace COTB.Combat
 {
     [System.Serializable]
-    public class ApplyEffect : CommandComponent
+    public abstract class CommandModifier
     {
-        public override void ExecuteComponent(CombatTarget[] targets, CombatActor actor)
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }
