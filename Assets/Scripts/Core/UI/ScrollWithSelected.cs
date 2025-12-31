@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace COTB.Utilities
+namespace COTB.UI
 {
     [RequireComponent(typeof(ScrollRect))]
     public class ScrollWithSelected : MonoBehaviour

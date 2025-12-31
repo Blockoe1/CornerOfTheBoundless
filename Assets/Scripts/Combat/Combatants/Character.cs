@@ -1,17 +1,17 @@
 /*****************************************************************************
-// File Name : Combatant.cs
+// File Name : Character.cs
 // Author : Eli Koederitz
 // Creation Date : 12/30/2025
 // Last Modified : 12/30/2025
 //
-// Brief Description : Abstract class for controller classes that define a type of entity that can participate in combat.
+// Brief Description : Represents a player controlled character in combat.
 *****************************************************************************/
 using UnityEngine;
 
 namespace COTB.Combat
 {
-    public abstract class Combatant : MonoBehaviour
+    public class Character : Combatant
     {
-    
+        
     }
 }
