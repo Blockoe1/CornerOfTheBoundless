@@ -109,5 +109,13 @@ namespace COTB.UI
             menuHierarchy.Clear();
         }
         #endregion
+
+        #region Debug
+        [ContextMenu("Enable")]
+        private void Enable()
+        {
+            Load(); 
+        }
+        #endregion
     }
 }

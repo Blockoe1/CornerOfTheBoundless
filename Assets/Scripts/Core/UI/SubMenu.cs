@@ -18,7 +18,7 @@ namespace COTB.UI
     {
         #region Vars
         [SerializeField, Tooltip("The button that opens this sub menu.")]
-        private Button m_parentButton;
+        protected Button parentButton;
         #endregion
 
         //private void OnDestroy()
@@ -51,7 +51,7 @@ namespace COTB.UI
         /// </summary>
         public override void Unload()
         {
-            m_parentButton.Select();
+            parentButton.Select();
             ToggleMenu(false);
         }
     }

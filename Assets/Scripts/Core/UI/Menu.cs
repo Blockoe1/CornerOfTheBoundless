@@ -63,8 +63,11 @@ namespace COTB.UI
         public virtual void Load()
         {
             ToggleMenu(true);
-            /// Need to select the new button after the menu has been loaded because disabled game objects dont recieve selection messages.
-            initialButton.Select();
+            // Need to select the new button after the menu has been loaded because disabled game objects dont recieve selection messages.
+            if (initialButton != null)
+            {
+                initialButton.Select();
+            }
         }
 
         /// <summary>

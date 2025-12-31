@@ -143,7 +143,7 @@ namespace COTB.UI
             normalPos.y = targetPosition;
             m_scrollRect.normalizedPosition = normalPos;
 
-            Debug.Log("Done Scrolling");
+            //Debug.Log("Done Scrolling");
             m_scrollingCoroutine = null;
         }
 
