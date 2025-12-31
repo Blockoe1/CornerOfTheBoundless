@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace COTB.Combat
@@ -19,6 +20,8 @@ namespace COTB.Combat
         #region CONSTS
         private const string TOGGLE_CHARACTER_ACTION_NAME = "ToggleCharacter";
         #endregion
+
+        [SerializeField] private UnityEvent OnBeginPlayerTurn;
 
         private Character[] characters;
 

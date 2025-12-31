@@ -1,0 +1,18 @@
+{
+    "name": "CombatUI",
+    "rootNamespace": "COTB.Combat.UI",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:89a98c9ee31a15f49800a2193bd9d9d7",
+        "GUID:fc231e386a4921e47a09f324b9fd8446"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

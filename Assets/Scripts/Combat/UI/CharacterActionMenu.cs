@@ -6,9 +6,8 @@
 //
 // Brief Description : Player interface with the combat system that allows them to issue commands to characters.
 *****************************************************************************/
-using COTB.UI;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace COTB.Combat.UI
@@ -16,7 +15,8 @@ namespace COTB.Combat.UI
     public class CharacterActionMenu : MonoBehaviour
     {
         [SerializeField] private CombatSubMenu subMenuPrefab;
-        [SerializeField] private Button combatButtonPrefab;
+        [SerializeField] private CombatButton combatButtonPrefab;
+        [SerializeField] private UnityEvent OnActionSelected;
 
         #region Sub-Menu Creation
         /// <summary>
@@ -27,7 +27,7 @@ namespace COTB.Combat.UI
         private CombatSubMenu CreateSubMenu(IButtonReadable[] buttonData, string menuName, Button parentButton)
         {
             CombatSubMenu subMenu = Instantiate(subMenuPrefab, transform);
-            Button[] buttons = ConstructButtons(buttonData, subMenu.Content);
+            Button[] buttons = ConstructButtons(buttonData, subMenu);
             subMenu.Initialize(buttons[0], parentButton, buttons.Length, menuName);
             return subMenu;
         }
@@ -35,15 +35,16 @@ namespace COTB.Combat.UI
         /// <summary>
         /// Construct all the buttons within a given sub-menu.
         /// </summary>
-        /// <param name="buttonData"></param>
+        /// <param name="buttonData">The button data array to construct the buttons from.</param>
+        /// <param name="parentMenu">The sub-menu that the buttons will belong to.</param>
         /// <returns></returns>
-        private Button[] ConstructButtons(IButtonReadable[] buttonData, Transform menuContent)
+        private Button[] ConstructButtons(IButtonReadable[] buttonData, CombatSubMenu parentMenu)
         {
             Button[] createdButtons = new Button[buttonData.Length];
 
             for (int i = 0; i < buttonData.Length; i++)
             {
-                createdButtons[i] = ConstructButton(buttonData[i], menuContent);
+                createdButtons[i] = ConstructButton(buttonData[i], parentMenu);
             }
             HookupButtonNavigation(createdButtons);
 
@@ -54,12 +55,13 @@ namespace COTB.Combat.UI
         /// Constructs a specific combat button from the given button data.
         /// </summary>
         /// <param name="buttonData">The button data to construct the button from.</param>
+        /// <param name="parentMenu">The SubMenu this button belongs to.</param>
         /// <returns>The created button.</returns>
-        private Button ConstructButton(IButtonReadable buttonData, Transform menuContent)
+        private Button ConstructButton(IButtonReadable buttonData, CombatSubMenu parentMenu)
         {
-            Button createdButton = Instantiate(combatButtonPrefab, menuContent);
-
-
+            CombatButton createdButton = Instantiate(combatButtonPrefab, parentMenu.Content);
+            createdButton.Initialize(buttonData, parentMenu.ScrollController, parentMenu);
+            return createdButton.LinkedButton;
         }
 
         /// <summary>

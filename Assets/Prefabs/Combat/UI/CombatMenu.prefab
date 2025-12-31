@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8618807109405142404}
   - component: {fileID: 4584560298174416759}
   - component: {fileID: 1061217868513714201}
+  - component: {fileID: 7426055582346550112}
   m_Layer: 5
   m_Name: CombatMenu
   m_TagString: Untagged
@@ -125,6 +126,22 @@ MonoBehaviour:
   m_useScaledTime: 0
   m_scrollMargin: 5
   m_scrollSpeed: 15
+--- !u!114 &7426055582346550112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968516251336258221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff34586e5dba84743a2916965fe3ad36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.CombatSubMenu
+  initialButton: {fileID: 0}
+  parentButton: {fileID: 0}
+  content: {fileID: 1536007912738379318}
+  scrollController: {fileID: 1061217868513714201}
 --- !u!1 &2331159113652628383
 GameObject:
   m_ObjectHideFlags: 0

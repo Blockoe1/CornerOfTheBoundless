@@ -6,6 +6,7 @@
 //
 // Brief Description : Abstract base class for scripts that control menus.
 *****************************************************************************/
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,6 +18,9 @@ namespace COTB.UI
         #region Vars
         [SerializeField, Tooltip("The button to be selected when this menu is loaded.")]
         protected Button initialButton;
+
+        public event Action OnMenuLoaded;
+        public event Action OnMenuUnloaded;
 
         //protected bool isEnabled;
         #endregion
@@ -63,6 +67,7 @@ namespace COTB.UI
         public virtual void Load()
         {
             ToggleMenu(true);
+            OnMenuLoaded?.Invoke();
             // Need to select the new button after the menu has been loaded because disabled game objects dont recieve selection messages.
             if (initialButton != null)
             {
@@ -79,6 +84,7 @@ namespace COTB.UI
             // The problem was that a message cant be sent to a disabled game object
             //ExecuteEvents.Execute<IDeselectHandler>(EventSystem.current.currentSelectedGameObject, null, (x, y) => x.OnDeselect(new BaseEventData(EventSystem.current)));
             EventSystem.current.SetSelectedGameObject(null);
+            OnMenuUnloaded?.Invoke();
             ToggleMenu(false);
         }
 

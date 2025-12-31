@@ -7,14 +7,16 @@
 // Brief Description : Interface that allows a class to be loaded to a combat button/
 *****************************************************************************/
 
+using UnityEngine;
+
 namespace COTB.Combat
 {
     public interface IButtonReadable
     {
         string GetName();
         string GetDescription();
-        string GetIcon();
-        string GetCost();
+        Sprite GetIcon();
+        int GetCost();
 
         void OnButtonClicked();
     }
