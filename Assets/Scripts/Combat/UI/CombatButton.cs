@@ -83,6 +83,14 @@ namespace COTB.Combat.UI
         }
 
         /// <summary>
+        /// Called from the button UnityEvent and manages behaviour that happens when this button is pressed.
+        /// </summary>
+        public void OnButtonClicked()
+        {
+
+        }
+
+        /// <summary>
         /// Unsubscribe events.
         /// </summary>
         private void OnDestroy()

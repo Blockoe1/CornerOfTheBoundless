@@ -6,17 +6,54 @@
 //
 // Brief Description : Player interface with the combat system that allows them to issue commands to characters.
 *****************************************************************************/
+using COTB.UI;
+using CustomAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace COTB.Combat.UI
 {
+    [RequireComponent(typeof(RootMenu))]
     public class CharacterActionMenu : MonoBehaviour
     {
         [SerializeField] private CombatSubMenu subMenuPrefab;
         [SerializeField] private CombatButton combatButtonPrefab;
         [SerializeField] private UnityEvent OnActionSelected;
+
+        private CombatSubMenu currentSkillsMenu;
+
+        #region Component References
+        [Header("Components")]
+        [SerializeReference, ReadOnly] private RootMenu rootMenu;
+
+        /// <summary>
+        /// Get components on reset.
+        /// </summary>
+        [ContextMenu("Get Component References")]
+        private void Reset()
+        {
+            rootMenu = GetComponent<RootMenu>();
+        }
+        #endregion
+
+        /// <summary>
+        /// Loads a given character's data to the action menu.
+        /// </summary>
+        internal void LoadCharacter(CombatSubMenu skillMenu)
+        {
+            currentSkillsMenu = skillMenu;
+        }
+
+        #region Button Interface
+        /// <summary>
+        /// Opens the skills menu of the current character.
+        /// </summary>
+        public void OpenSkillsMenu()
+        {
+            rootMenu.OpenSubMenu(currentSkillsMenu);
+        }
+        #endregion
 
         #region Sub-Menu Creation
         /// <summary>
@@ -24,12 +61,24 @@ namespace COTB.Combat.UI
         /// </summary>
         /// <param name="buttonData">The buttons to generate.</param>
         /// <returns>The created sub-menu that is created as a child of this object.</returns>
-        private CombatSubMenu CreateSubMenu(IButtonReadable[] buttonData, string menuName, Button parentButton)
+        internal CombatSubMenu CreateSubMenu(IButtonReadable[] buttonData, string menuName, Button parentButton)
         {
             CombatSubMenu subMenu = Instantiate(subMenuPrefab, transform);
+            InitializeSubMenu(subMenu, buttonData, menuName, parentButton);
+            return subMenu;
+        }
+
+        /// <summary>
+        /// Initializes an already created sub-menu.
+        /// </summary>
+        /// <param name="subMenu"></param>
+        /// <param name="buttonData"></param>
+        /// <param name="menuName"></param>
+        /// <param name="parentButton"></param>
+        internal void InitializeSubMenu(CombatSubMenu subMenu, IButtonReadable[] buttonData, string menuName, Button parentButton)
+        {
             Button[] buttons = ConstructButtons(buttonData, subMenu);
             subMenu.Initialize(buttons[0], parentButton, buttons.Length, menuName);
-            return subMenu;
         }
 
         /// <summary>
@@ -38,7 +87,7 @@ namespace COTB.Combat.UI
         /// <param name="buttonData">The button data array to construct the buttons from.</param>
         /// <param name="parentMenu">The sub-menu that the buttons will belong to.</param>
         /// <returns></returns>
-        private Button[] ConstructButtons(IButtonReadable[] buttonData, CombatSubMenu parentMenu)
+        internal Button[] ConstructButtons(IButtonReadable[] buttonData, CombatSubMenu parentMenu)
         {
             Button[] createdButtons = new Button[buttonData.Length];
 

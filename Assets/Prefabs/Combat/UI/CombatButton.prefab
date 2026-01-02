@@ -210,7 +210,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7452923395856801158}
-  - component: {fileID: 6222685201739249113}
   - component: {fileID: 4765398340620510053}
   - component: {fileID: 4019947583369626438}
   - component: {fileID: 8414686816470317698}
@@ -246,20 +245,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -47.5}
   m_SizeDelta: {x: 350, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6222685201739249113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890542806316882432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c66a41dc2bfbaa44bfdca35fdfa3f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::COTB.ButtonOrganizer
-  buttonName: Combat
-  buttonText: {fileID: 5040479821801188057}
 --- !u!114 &4765398340620510053
 MonoBehaviour:
   m_ObjectHideFlags: 0
