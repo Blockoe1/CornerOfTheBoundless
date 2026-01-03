@@ -27,11 +27,16 @@ namespace COTB.Combat
         {
             get
             {
-                // If no GO exists to hold the coroutine for the queue, create one.
                 if (queueCoroutineObj == null)
                 {
-                    GameObject go = new GameObject("CombatQueue");
-                    queueCoroutineObj = go.AddComponent<CombatQueue>();
+                    // Attempt to find a CombatQueue.
+                    queueCoroutineObj = FindFirstObjectByType<CombatQueue>();
+                    // If no GO exists to hold the coroutine for the queue, create one.
+                    if (queueCoroutineObj == null)
+                    {
+                        GameObject go = new GameObject("CombatQueue");
+                        queueCoroutineObj = go.AddComponent<CombatQueue>();
+                    }
                 }
                 return queueCoroutineObj;
             }

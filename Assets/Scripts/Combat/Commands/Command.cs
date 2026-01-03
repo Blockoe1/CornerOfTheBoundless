@@ -20,6 +20,12 @@ namespace COTB.Combat
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
         [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
 
+        #region Properties
+        public string Name => commandName;
+        public string Description => commandDescription;
+
+        #endregion
+
         /// <summary>
         /// Controls the main logic of the command.
         /// </summary>

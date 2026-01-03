@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace COTB.Utilities
+namespace COTB.UI
 {
     [RequireComponent(typeof(ScrollRect))]
     public class ScrollWithSelected : MonoBehaviour
@@ -143,7 +143,7 @@ namespace COTB.Utilities
             normalPos.y = targetPosition;
             m_scrollRect.normalizedPosition = normalPos;
 
-            Debug.Log("Done Scrolling");
+            //Debug.Log("Done Scrolling");
             m_scrollingCoroutine = null;
         }
 

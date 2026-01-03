@@ -9,7 +9,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace COTB.Utilities
+namespace COTB.UI
 {
     public class ScrollSelectDetector : MonoBehaviour, ISelectHandler
     {

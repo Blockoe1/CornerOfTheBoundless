@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9a4ba3dc224f241829d0a49d9c4c2d, type: 3}
   m_Name: TestCommand
   m_EditorClassIdentifier: Combat::COTB.Combat.Command
-  commandName: 
-  commandDescription: 
+  commandName: Test Command
+  commandDescription: Lorem Ipsum
   commandComponents:
   - rid: 1420671976042135637
   commandModifiers: []
