@@ -12,7 +12,7 @@ namespace COTB.Combat.UI
 {
     public class SkillButtonData : IButtonReadable
     {
-        private Command cmd;
+        private readonly Command cmd;
 
         public SkillButtonData(Command cmd)
         {

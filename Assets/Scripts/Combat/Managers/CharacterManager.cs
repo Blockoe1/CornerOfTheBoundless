@@ -27,27 +27,41 @@ namespace COTB.Combat
 
         private InputAction toggleCharacterAction;
 
+        private Character selectedCharacter;
         private int sCharIndex;
 
         #region Properties
         private int SelectedCharacterIndex
         {
-            get { return characters.Length; }
+            get { return sCharIndex; }
+            set
+            {
+                sCharIndex = value;
+                LoopIndex(characters, ref sCharIndex);
+            }
+        }
+
+        private Character SelectedCharacter
+        { 
+            get
+            {
+                return selectedCharacter;
+            }
             set
             {
                 // Deselect the previosuly selected character.
-                if (characters[sCharIndex] != null)
+                if (selectedCharacter != null)
                 {
-                    characters[sCharIndex].SetSelected(false);
+                    selectedCharacter.OnDeselected();
                 }
 
-                sCharIndex = value;
-                LoopIndex(characters, ref sCharIndex);
+                selectedCharacter = value;
 
                 // Select the newly selected character.
-                if (characters[sCharIndex] != null)
+                if (selectedCharacter != null)
                 {
-                    characters[sCharIndex].SetSelected(true);
+                    selectedCharacter.OnSelected();
+                    OnCharacterSelected?.Invoke(selectedCharacter);
                 }
             }
         }
@@ -75,9 +89,12 @@ namespace COTB.Combat
         /// <summary>
         /// Begins the player's action by selecting the first available character.
         /// </summary>
+        [ContextMenu("Begin player action")] // Debug
         public void BeginPlayerAction()
         {
             // Select the first valid character.
+            Debug.Log(SelectedCharacterIndex);
+            SelectedCharacter = characters[SelectedCharacterIndex];
 
             ToggleEnabled(true);
         }
@@ -107,6 +124,7 @@ namespace COTB.Combat
 
             // Toggle the selected character here.
             SelectedCharacterIndex += inputDir;
+            SelectedCharacter = characters[SelectedCharacterIndex];
         }
 
         /// <summary>
@@ -119,17 +137,26 @@ namespace COTB.Combat
         public static bool LoopIndex<T>(IEnumerable<T> collection, ref int index)
         {
             bool didLoop = false;
-            if (index >= collection.Count())
+            while (index >= collection.Count())
             {
                 didLoop = true;
                 index -= collection.Count();
             }
-            else if (index < 0)
+            while (index < 0)
             {
                 didLoop = true;
                 index += collection.Count();
             }
             return didLoop;
+        }
+
+        /// <summary>
+        /// Causes the currently selected character to perform some combat action.
+        /// </summary>
+        /// <param name="action">The action to perform.</param>
+        public void PerformActionOnSelectedCharacter(CombatActionData action)
+        {
+            SelectedCharacter.PerformAction(action);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace COTB.Combat.UI
     {
         [SerializeField] private CombatSubMenu subMenuPrefab;
         [SerializeField] private CombatButton combatButtonPrefab;
-        [SerializeField] private UnityEvent OnActionSelected;
+        [SerializeField] private UnityEvent<CombatActionData> OnActionSelected;
 
         private CombatSubMenu currentSkillsMenu;
 
@@ -48,7 +48,10 @@ namespace COTB.Combat.UI
         /// </summary>
         public void OpenSkillsMenu()
         {
-            rootMenu.OpenSubMenu(currentSkillsMenu);
+            if (currentSkillsMenu != null)
+            {
+                rootMenu.OpenSubMenu(currentSkillsMenu);
+            }
         }
         #endregion
 
@@ -62,6 +65,7 @@ namespace COTB.Combat.UI
         {
             CombatSubMenu subMenu = Instantiate(subMenuPrefab, transform);
             InitializeSubMenu(subMenu, buttonData, menuName, parentButton);
+            subMenu.Unload();
             return subMenu;
         }
 
@@ -74,6 +78,11 @@ namespace COTB.Combat.UI
         /// <param name="parentButton"></param>
         internal void InitializeSubMenu(CombatSubMenu subMenu, IButtonReadable[] buttonData, string menuName, Button parentButton)
         {
+            if (buttonData == null || buttonData.Length == 0)
+            {
+                throw new System.IndexOutOfRangeException("Cannot initialize sub-menu with a null or 0 count buttonData array.");
+            }
+
             Button[] buttons = ConstructButtons(buttonData, subMenu);
             subMenu.Initialize(buttons[0], parentButton, buttons.Length, menuName);
         }

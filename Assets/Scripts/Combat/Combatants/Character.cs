@@ -6,6 +6,8 @@
 //
 // Brief Description : Represents a player controlled character in combat.
 *****************************************************************************/
+using COTB.UI;
+using CustomAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +16,22 @@ namespace COTB.Combat
     public class Character : Combatant
     {
         [SerializeField] private Command[] debugSkills;
+        [SerializeField] private UnityEvent OnSelectEvent;
+        [SerializeField] private UnityEvent OnDeselectEvent;
+
+        #region Component References
+        [Header("Components")]
+        [SerializeReference, ReadOnly] private CombatActor actor;
+
+        /// <summary>
+        /// Get components on reset.
+        /// </summary>
+        [ContextMenu("Get Component References")]
+        private void Reset()
+        {
+            actor = GetComponent<CombatActor>();
+        }
+        #endregion
 
         #region Properties
         public Command[] Skills
@@ -28,12 +46,26 @@ namespace COTB.Combat
         #endregion
 
         /// <summary>
-        /// 
+        /// Controls actions that happen when this character is selected or deselected
         /// </summary>
-        /// <param name="isSelected"></param>
-        public void SetSelected(bool isSelected)
+        public void OnSelected()
         {
+            Debug.Log($"Character {name} was selected");
+            OnSelectEvent?.Invoke();
+        }
+        public void OnDeselected()
+        {
+            Debug.Log($"Character {name} was deselected");
+            OnDeselectEvent?.Invoke();
+        }
 
+        /// <summary>
+        /// Causes this character to perform an action in combat.
+        /// </summary>
+        /// <param name="actionData"></param>
+        public void PerformAction(CombatActionData actionData)
+        {
+            actor.PerformCommand(actionData.Command, actionData.Targets);
         }
     }
 }

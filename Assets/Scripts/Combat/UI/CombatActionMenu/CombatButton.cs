@@ -69,6 +69,7 @@ namespace COTB.Combat.UI
         {
             if (readableData != null)
             {
+                Debug.Log(readableData.GetName());
                 nameText.text = readableData.GetName();
                 descriptionText.text = readableData.GetDescription();
 
