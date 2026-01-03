@@ -21,7 +21,7 @@ namespace COTB.Combat
         private const string TOGGLE_CHARACTER_ACTION_NAME = "ToggleCharacter";
         #endregion
 
-        [SerializeField] private UnityEvent OnBeginPlayerTurn;
+        [SerializeField] private UnityEvent<Character> OnCharacterSelected;
 
         private Character[] characters;
 

@@ -16,13 +16,15 @@ namespace COTB.Combat
         [SerializeField] private Command[] debugSkills;
 
         #region Properties
-        private Command[] Skills
+        public Command[] Skills
         {
             get
             {
                 return debugSkills;
             }
         }
+
+        public string Name => gameObject.name;
         #endregion
 
         /// <summary>

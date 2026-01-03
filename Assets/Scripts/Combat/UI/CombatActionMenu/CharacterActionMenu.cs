@@ -8,6 +8,7 @@
 *****************************************************************************/
 using COTB.UI;
 using CustomAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -37,13 +38,9 @@ namespace COTB.Combat.UI
         }
         #endregion
 
-        /// <summary>
-        /// Loads a given character's data to the action menu.
-        /// </summary>
-        internal void LoadCharacter(CombatSubMenu skillMenu)
-        {
-            currentSkillsMenu = skillMenu;
-        }
+        #region Properties
+        public CombatSubMenu CurrentSkillsMenu { get { return currentSkillsMenu; }  set { currentSkillsMenu = value; } } 
+        #endregion
 
         #region Button Interface
         /// <summary>
