@@ -7,8 +7,6 @@
 // Brief Description : Player interface with the combat system that allows them to issue commands to characters.
 *****************************************************************************/
 using COTB.UI;
-using CustomAttributes;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;

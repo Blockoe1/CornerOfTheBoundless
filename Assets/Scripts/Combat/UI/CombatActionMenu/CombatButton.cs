@@ -7,7 +7,6 @@
 // Brief Description : Controls a button used from the character action menu.
 *****************************************************************************/
 using COTB.UI;
-using CustomAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

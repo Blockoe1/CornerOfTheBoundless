@@ -6,7 +6,6 @@
 //
 // Brief Description : Manages loading character data to the action menu.
 *****************************************************************************/
-using CustomAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

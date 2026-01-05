@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat
+namespace COTB.Combat.UI
 {
     public class ActionMenuController : MonoBehaviour
     {

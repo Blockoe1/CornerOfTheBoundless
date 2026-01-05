@@ -10,7 +10,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CustomAttributes
+namespace COTB.Editor
 {
     [CustomPropertyDrawer(typeof(ShowNestedEditor))]
     public class ShowNestedEditorEditor : PropertyDrawer
@@ -26,7 +26,7 @@ namespace CustomAttributes
             if (obj != null && !IsClassOrSubclass(obj.GetType(), property.serializedObject.targetObject.GetType()))
             {
                 // Create the editor for the given object.  Returns null if it cant.
-                Editor objEditor = Editor.CreateEditor(obj);
+                UnityEditor.Editor objEditor = UnityEditor.Editor.CreateEditor(obj);
 
                 // Create the foldout for showing the nested propertie's editor.
                 showProperties = EditorGUI.Foldout(position, showProperties, "");

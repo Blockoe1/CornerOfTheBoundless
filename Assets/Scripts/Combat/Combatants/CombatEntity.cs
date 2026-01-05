@@ -6,7 +6,6 @@
 //
 // Brief Description : Abstract class for controller classes that define a type of entity that can be targeted
 *****************************************************************************/
-using CustomAttributes;
 using UnityEngine;
 
 namespace COTB.Combat

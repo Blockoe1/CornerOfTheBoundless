@@ -7,7 +7,6 @@
 // Brief Description : Specialized sub-menu for the character action menu.
 *****************************************************************************/
 using COTB.UI;
-using CustomAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 

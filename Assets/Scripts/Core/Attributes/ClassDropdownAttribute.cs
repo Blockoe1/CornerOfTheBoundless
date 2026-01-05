@@ -9,7 +9,7 @@
 using System;
 using UnityEngine;
 
-namespace COTB.Combat
+namespace COTB
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class ClassDropdownAttribute : PropertyAttribute

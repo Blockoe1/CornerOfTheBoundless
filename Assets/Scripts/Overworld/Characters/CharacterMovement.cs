@@ -6,11 +6,10 @@
 //
 // Brief Description : Controls character movement in the overworld.
 *****************************************************************************/
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using CustomAttributes;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 namespace COTB.Overworld
 {

@@ -13,7 +13,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace COTB.Combat.Editor
+namespace COTB.Editor
 {
     [CustomPropertyDrawer(typeof(ClassDropdownAttribute))]
     public class ClassDropdownAttributeDrawer : PropertyDrawer

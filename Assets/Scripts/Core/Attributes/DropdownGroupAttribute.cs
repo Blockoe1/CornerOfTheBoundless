@@ -9,7 +9,7 @@
 using System;
 using UnityEngine;
 
-namespace COTB.Combat
+namespace COTB
 {
     public class DropdownGroupAttribute : Attribute
     {

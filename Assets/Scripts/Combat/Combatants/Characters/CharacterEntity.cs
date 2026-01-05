@@ -6,8 +6,6 @@
 //
 // Brief Description : Represents a player controlled character in combat.
 *****************************************************************************/
-using COTB.UI;
-using CustomAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
