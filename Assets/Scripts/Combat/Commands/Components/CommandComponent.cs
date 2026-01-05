@@ -14,6 +14,6 @@ namespace COTB.Combat
     [System.Serializable]
     public abstract class CommandComponent
     {
-        public abstract void ExecuteComponent(CombatTarget[] targets, CombatActor actor);
+        public abstract void ExecuteComponent(Combatant[] targets, CombatActor actor);
     }
 }

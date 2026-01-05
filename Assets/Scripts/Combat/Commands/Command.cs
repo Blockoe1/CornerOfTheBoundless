@@ -32,7 +32,7 @@ namespace COTB.Combat
         /// <param name="targets"></param>
         /// <param name="actor"></param>
         /// <returns></returns>
-        public IEnumerator CommandMain(CombatTarget[] targets,  CombatActor actor)
+        public IEnumerator CommandMain(Combatant[] targets,  CombatActor actor)
         {
             // Loop through each component and apply it's effects.
             foreach(CommandComponent component in commandComponents)

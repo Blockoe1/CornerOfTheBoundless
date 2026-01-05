@@ -12,13 +12,13 @@ namespace COTB.Combat
 {
     public class CombatActor : MonoBehaviour
     {
-        [SerializeField] private CombatTarget debugTarget;
+        [SerializeField] private Combatant debugTarget;
         [SerializeField] private Command debugCommand;
 
         /// <summary>
         /// Causes this combatant to perform a given command.
         /// </summary>
-        public void PerformCommand(Command toPerform, CombatTarget[] targets)
+        public void PerformCommand(Command toPerform, Combatant[] targets)
         {
             // Add the command's main function to the queue.
             CombatQueue.AddToQueue(toPerform.CommandMain(targets, this), this);
@@ -28,7 +28,7 @@ namespace COTB.Combat
         [ContextMenu("Perform Debug Command")]
         private void PerformDebugCommand()
         {
-            PerformCommand(debugCommand, new CombatTarget[] { debugTarget } );
+            PerformCommand(debugCommand, new Combatant[] { debugTarget } );
         }
         #endregion
     }

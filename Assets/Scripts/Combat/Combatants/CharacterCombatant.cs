@@ -13,9 +13,9 @@ using UnityEngine.Events;
 
 namespace COTB.Combat
 {
-    public class Character : Combatant
+    public class CharacterCombatant : Combatant
     {
-        [SerializeField] private Command[] debugSkills;
+        [SerializeField] private Character loadedCharacter;
         [SerializeField] private UnityEvent OnSelectEvent;
         [SerializeField] private UnityEvent OnDeselectEvent;
 
@@ -38,7 +38,7 @@ namespace COTB.Combat
         {
             get
             {
-                return debugSkills;
+                return loadedCharacter.UsableSkills;
             }
         }
 
@@ -66,6 +66,11 @@ namespace COTB.Combat
         public void PerformAction(CombatActionData actionData)
         {
             actor.PerformCommand(actionData.Command, actionData.Targets);
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
