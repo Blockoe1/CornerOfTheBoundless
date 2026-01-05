@@ -166,7 +166,7 @@ MonoBehaviour:
   OnCharacterSelected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2345462063191577005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: COTB.Combat.UI.CharacterLoader, CombatUI
         m_MethodName: LoadCharacter
         m_Mode: 0
@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 1584960278}
   - component: {fileID: 1584960276}
   - component: {fileID: 1584960277}
+  - component: {fileID: 1584960279}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -791,6 +792,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   actor: {fileID: 1584960276}
+--- !u!114 &1584960279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c1ae8e50b48c54ab0a41114127aa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CombatUI::COTB.Combat.ActionMenuController
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
@@ -1037,6 +1050,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457071648}
     m_Modifications:
+    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
+      propertyPath: contentTransform
+      value: 
+      objectReference: {fileID: 2345462063191577003}
     - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1320,52 +1337,24 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5055084778077756174, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2345462063191577005}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
 --- !u!114 &2345462063191577002 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
   m_PrefabInstance: {fileID: 2345462063191577001}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2345462063191577003}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0e2fe1886faa8147b9d86467b2c984d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CharacterActionMenu
---- !u!1 &2345462063191577003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5055084778077756174, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
+--- !u!224 &2345462063191577003 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2071467979463752177, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
   m_PrefabInstance: {fileID: 2345462063191577001}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2345462063191577004 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-  m_PrefabInstance: {fileID: 2345462063191577001}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &2345462063191577005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2345462063191577003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0a690ef7ee3a54280467ef2eb9fd4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.CharacterLoader
-  skillsButton: {fileID: 2345462063191577004}
-  characterActionMenu: {fileID: 2345462063191577002}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -31,14 +31,6 @@ namespace COTB.Combat
         {
             return null;
         }
-        /// <summary>
-        /// Gets the cost displayed for this button.
-        /// </summary>
-        /// <returns></returns>
-        int GetCost()
-        {
-            return 0;
-        }
 
         /// <summary>
         /// Called when the button is clicked.

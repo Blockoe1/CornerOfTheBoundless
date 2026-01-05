@@ -9,13 +9,12 @@
 using COTB.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
 namespace COTB.Combat.UI
 {
     public class CombatSubMenu : SubMenu
     {
-        [SerializeField] private GridLayoutGroup content;
-
         #region Component References
         [Header("Components")]
         [SerializeReference, ReadOnly] private ScrollWithSelected scrollController;
@@ -32,7 +31,6 @@ namespace COTB.Combat.UI
 
         #region Properties
         public ScrollWithSelected ScrollController => scrollController;
-        public Transform Content => content.transform;
         #endregion
 
         /// <summary>
@@ -59,13 +57,16 @@ namespace COTB.Combat.UI
         /// <param name="buttonNum"></param>
         private void ScaleContent(int buttonNum)
         {
-            /// Calculate the height that the content object needs to be based on the number of buttons and how much space each one
-            /// takes up based on the settings of the Grid Layout Group.
-            RectTransform rectTrans = this.content.transform as RectTransform;
-            Vector2 newSize = rectTrans.sizeDelta;
-            float size = (content.cellSize.y + content.spacing.y) * buttonNum + content.padding.top + content.padding.bottom;
-            newSize.y += size;
-            rectTrans.sizeDelta = newSize;
+            if (Content.TryGetComponent(out GridLayoutGroup grid))
+            {
+                /// Calculate the height that the content object needs to be based on the number of buttons and how much space each one
+                /// takes up based on the settings of the Grid Layout Group.
+                RectTransform rectTrans = Content as RectTransform;
+                Vector2 newSize = rectTrans.sizeDelta;
+                float size = (grid.cellSize.y + grid.spacing.y) * buttonNum + grid.padding.top + grid.padding.bottom;
+                newSize.y += size;
+                rectTrans.sizeDelta = newSize;
+            }
         }
     }
 }
