@@ -14,7 +14,7 @@ namespace COTB.Combat
     [System.Serializable]
     public class ApplyEffect : CommandComponent
     {
-        public override void ExecuteComponent(CombatTarget[] targets, CombatActor actor)
+        public override void ExecuteComponent(CombatEntity[] targets, CombatActor actor)
         {
             throw new System.NotImplementedException();
         }

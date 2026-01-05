@@ -9,7 +9,7 @@
 using System;
 using UnityEngine;
 
-namespace CustomAttributes
+namespace COTB
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class ShowNestedEditor : PropertyAttribute

@@ -16,6 +16,7 @@ namespace COTB.Combat
     {
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;
+        [SerializeField] private Sprite icon;
 
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
         [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
@@ -23,6 +24,7 @@ namespace COTB.Combat
         #region Properties
         public string Name => commandName;
         public string Description => commandDescription;
+        public Sprite Icon => icon;
 
         #endregion
 
@@ -32,7 +34,7 @@ namespace COTB.Combat
         /// <param name="targets"></param>
         /// <param name="actor"></param>
         /// <returns></returns>
-        public IEnumerator CommandMain(CombatTarget[] targets,  CombatActor actor)
+        public IEnumerator CommandMain(CombatEntity[] targets,  CombatActor actor)
         {
             // Loop through each component and apply it's effects.
             foreach(CommandComponent component in commandComponents)

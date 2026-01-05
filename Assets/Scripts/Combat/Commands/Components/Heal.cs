@@ -22,7 +22,7 @@ namespace COTB.Combat
         /// <param name="targets"></param>
         /// <param name="actor"></param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public override void ExecuteComponent(CombatTarget[] targets, CombatActor actor)
+        public override void ExecuteComponent(CombatEntity[] targets, CombatActor actor)
         {
             throw new System.NotImplementedException();
         }

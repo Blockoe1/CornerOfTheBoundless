@@ -16,6 +16,7 @@ namespace COTB.UI
     public abstract class Menu : MonoBehaviour
     {
         #region Vars
+        [SerializeField] private Transform content;
         [SerializeField, Tooltip("The button to be selected when this menu is loaded.")]
         protected Button initialButton;
 
@@ -33,6 +34,7 @@ namespace COTB.UI
         //        return isEnabled;
         //    }
         //}
+        public Transform Content => content;
         #endregion
 
         /// <summary>

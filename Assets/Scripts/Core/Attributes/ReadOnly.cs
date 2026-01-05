@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace CustomAttributes
+namespace COTB
 {
     public class ReadOnly : PropertyAttribute
     {

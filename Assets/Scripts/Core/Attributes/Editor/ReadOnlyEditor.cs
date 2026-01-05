@@ -9,7 +9,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CustomAttributes
+namespace COTB.Editor
 {
     [CustomPropertyDrawer(typeof(ReadOnly))]
     public class ReadOnlyEditor : PropertyDrawer

@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff34586e5dba84743a2916965fe3ad36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.CombatSubMenu
+  content: {fileID: 6734574248698468310}
   initialButton: {fileID: 0}
   parentButton: {fileID: 0}
-  content: {fileID: 1536007912738379318}
   scrollController: {fileID: 1061217868513714201}
 --- !u!1 &2331159113652628383
 GameObject:
