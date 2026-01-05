@@ -11,7 +11,7 @@ using COTB.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace COTB.Combat.UI
+namespace COTB.Combat.UI.CharacterControls
 {
     public abstract class SubMenuItem : ActionMenuItem
     {
@@ -19,7 +19,7 @@ namespace COTB.Combat.UI
         [SerializeField] private CombatButton subMenuButtonPrefab;
 
         private SubMenu subMenu;
-        private RootMenu rootMenu;
+        protected RootMenu rootMenu;
 
         /// <summary>
         /// Gets the data to construct the sub menu's button's from.

@@ -9,7 +9,7 @@
 
 using UnityEngine;
 
-namespace COTB.Combat
+namespace COTB.Combat.UI.CharacterControls
 {
     public interface IButtonReadable
     {

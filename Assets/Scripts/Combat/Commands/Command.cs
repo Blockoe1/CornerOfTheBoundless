@@ -16,6 +16,7 @@ namespace COTB.Combat
     {
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;
+        [SerializeField] private Sprite icon;
 
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
         [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
@@ -23,6 +24,7 @@ namespace COTB.Combat
         #region Properties
         public string Name => commandName;
         public string Description => commandDescription;
+        public Sprite Icon => icon;
 
         #endregion
 

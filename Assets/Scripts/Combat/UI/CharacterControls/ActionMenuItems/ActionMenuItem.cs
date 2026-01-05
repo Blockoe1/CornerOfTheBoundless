@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat.UI
+namespace COTB.Combat.UI.CharacterControls
 {
     public abstract class ActionMenuItem : MonoBehaviour, IButtonReadable
     {

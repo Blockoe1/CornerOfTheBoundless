@@ -11,13 +11,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace COTB.Combat.UI
+namespace COTB.Combat.UI.CharacterControls
 {
     public class CombatButton : MonoBehaviour
     {
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text descriptionText;
-        [SerializeField] private TMP_Text costText;
         [SerializeField] private Image icon;
 
         private IButtonReadable readableData;
@@ -71,10 +70,6 @@ namespace COTB.Combat.UI
                 Debug.Log(readableData.GetName());
                 nameText.text = readableData.GetName();
                 descriptionText.text = readableData.GetDescription();
-
-                int cost = readableData.GetCost();
-                costText.gameObject.SetActive(cost > 0);
-                costText.text = cost.ToString();
 
                 Sprite icn = readableData.GetIcon();
                 icon.gameObject.SetActive(icn != null);

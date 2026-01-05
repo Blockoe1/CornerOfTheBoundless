@@ -119,65 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &46692376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 46692377}
-  - component: {fileID: 46692378}
-  m_Layer: 0
-  m_Name: CharacterManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &46692377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46692376}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &46692378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46692376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f1c03424561f84aa8c019cbdcd7db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Combat::COTB.Combat.CharacterManager
-  OnCharacterSelected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: COTB.Combat.UI.CharacterLoader, CombatUI
-        m_MethodName: LoadCharacter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &236224500
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +603,7 @@ GameObject:
   - component: {fileID: 1584960276}
   - component: {fileID: 1584960277}
   - component: {fileID: 1584960279}
+  - component: {fileID: 1584960280}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -785,13 +727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Combat::COTB.Combat.CharacterEntity
   health: 0
   loadedCharacter: {fileID: 11400000, guid: 045a7449a27ddd7479e3608a1c8ea46c, type: 2}
-  OnSelectEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeselectEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  actor: {fileID: 1584960276}
 --- !u!114 &1584960279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +739,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c1ae8e50b48c54ab0a41114127aa14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CombatUI::COTB.Combat.ActionMenuController
+  OnSelectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeselectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  actor: {fileID: 1584960276}
+--- !u!114 &1584960280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f57ca427a26f04b800114c52e989d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.SkillsMenu
+  buttonPrefab: {fileID: 4765398340620510053, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+  buttonName: Skills
+  buttonDescription: Use Skills
+  buttonIcon: {fileID: 0}
+  buttonIndex: 0
+  subMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
+  subMenuButtonPrefab: {fileID: 4424021121277564777, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
+  character: {fileID: 1584960278}
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
@@ -1050,34 +1012,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457071648}
     m_Modifications:
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: contentTransform
-      value: 
-      objectReference: {fileID: 2345462063191577003}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 46692378}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PerformActionOnSelectedCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: COTB.Combat.CharacterManager, Combat
-      objectReference: {fileID: 0}
-    - target: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: OnActionSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1427096656125755986, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1125,34 +1059,6 @@ PrefabInstance:
     - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2345462063191577002}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenSkillsMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: COTB.Combat.UI.CharacterActionMenu, CombatUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087454934859523669, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1310,56 +1216,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544711615798362738, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
---- !u!114 &2345462063191577002 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 447211994163667741, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-  m_PrefabInstance: {fileID: 2345462063191577001}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0e2fe1886faa8147b9d86467b2c984d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Combat::COTB.Combat.CharacterActionMenu
---- !u!224 &2345462063191577003 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2071467979463752177, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-  m_PrefabInstance: {fileID: 2345462063191577001}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 46692377}
   - {fileID: 236224501}
   - {fileID: 1960432884}
   - {fileID: 1936365307}

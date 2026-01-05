@@ -1,34 +1,54 @@
 /*****************************************************************************
-// File Name : CharacterSelector.cs
+// File Name : CharacterActionMenu.cs
 // Author : Eli Koederitz
-// Creation Date : 12/29/2025
+// Creation Date : 12/31/2025
 // Last Modified : 12/31/2025
 //
-// Brief Description : Controls the player's selection of a certain character to act and is the main system that 
-// controls when the player can act.
+// Brief Description : Player interface with the combat system that allows them to issue commands to characters.
 *****************************************************************************/
+using COTB.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace COTB.Combat
+namespace COTB.Combat.UI.CharacterControls
 {
-    public class CharacterManager : MonoBehaviour
+    [RequireComponent(typeof(RootMenu))]
+    public class CharacterActionMenu : MonoBehaviour
     {
         #region CONSTS
         private const string TOGGLE_CHARACTER_ACTION_NAME = "ToggleCharacter";
         #endregion
 
-        [SerializeField] private UnityEvent<CharacterEntity> OnCharacterSelected;
+        [SerializeField] private ScrollWithSelected scrollController;
 
-        private CharacterEntity[] characters;
+        private CharacterCommander[] characters;
 
         private InputAction toggleCharacterAction;
 
-        private CharacterEntity selectedCharacter;
+        private CharacterCommander selectedCharacter;
         private int sCharIndex;
+
+        #region Component References
+        [Header("Components")]
+        [SerializeReference, ReadOnly] private RootMenu rootMenu;
+
+        /// <summary>
+        /// Get components on reset.
+        /// </summary>
+        [ContextMenu("Get Component References")]
+        private void Reset()
+        {
+            rootMenu = GetComponent<RootMenu>();
+        }
+        #endregion
+
+        #region Properties
+        public Transform Content => rootMenu.Content;
+        public ScrollWithSelected ScrollController => scrollController;
+        public RootMenu RootMenu => rootMenu;
+        #endregion
 
         #region Properties
         private int SelectedCharacterIndex
@@ -41,28 +61,32 @@ namespace COTB.Combat
             }
         }
 
-        private CharacterEntity SelectedCharacter
-        { 
+        private CharacterCommander SelectedCharacter
+        {
             get
             {
                 return selectedCharacter;
             }
             set
             {
-                // Deselect the previosuly selected character.
-                if (selectedCharacter != null)
-                {
-                    selectedCharacter.OnDeselected();
-                }
+               // Deselect the previosuly selected character.
+               if (selectedCharacter != null)
+               {
+                   selectedCharacter.OnDeselect();
+               }
 
-                selectedCharacter = value;
+               selectedCharacter = value;
 
-                // Select the newly selected character.
-                if (selectedCharacter != null)
-                {
-                    selectedCharacter.OnSelected();
-                    OnCharacterSelected?.Invoke(selectedCharacter);
-                }
+               // Select the newly selected character.
+               if (selectedCharacter != null)
+               {
+                   // Initialize the selected character if they haven't already.
+                   if (!selectedCharacter.HasInitialized)
+                   {
+                        selectedCharacter.Initialize(this);
+                   }
+                   selectedCharacter.OnSelect();
+               }
             }
         }
         #endregion
@@ -75,7 +99,7 @@ namespace COTB.Combat
             toggleCharacterAction = InputSystem.actions.FindAction(TOGGLE_CHARACTER_ACTION_NAME);
 
             // Find all the characters in the encounter.
-            characters = FindObjectsByType<CharacterEntity>(FindObjectsSortMode.InstanceID);
+            characters = FindObjectsByType<CharacterCommander>(FindObjectsSortMode.InstanceID);
         }
 
         /// <summary>

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2f57ca427a26f04b800114c52e989d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - buttonPrefab: {fileID: 4765398340620510053, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+  - buttonIcon: {instanceID: 0}
+  - subMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
+  - subMenuButtonPrefab: {fileID: 4424021121277564777, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

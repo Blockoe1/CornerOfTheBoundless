@@ -9,9 +9,8 @@
 using COTB.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
-namespace COTB.Combat.UI
+namespace COTB.Combat.UI.CharacterControls
 {
     public class CombatSubMenu : SubMenu
     {
