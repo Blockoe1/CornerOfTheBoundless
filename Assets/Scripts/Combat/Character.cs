@@ -14,6 +14,7 @@ namespace COTB.Combat
     public class Character : ScriptableObject
     {
         [SerializeField] private string characterName;
+        [SerializeField, Range(1, 99)] private byte level;
         [Header("Combat Settings")]
         [SerializeField] private Command[] skills;
 

@@ -20,10 +20,10 @@ namespace COTB.Combat
         /// </summary>
         /// <param name="targets"></param>
         /// <param name="actor"></param>
-        public override void ExecuteComponent(Combatant[] targets, CombatActor actor)
+        public override void ExecuteComponent(CombatEntity[] targets, CombatActor actor)
         {
             // Deal damage to all the passed in targets.
-            foreach(Combatant target in targets)
+            foreach(CombatEntity target in targets)
             {
                 // Using attack multiplier as a placeholder until I get stats figured out.
                 target.TakeDamage((int)attackMultiplier);

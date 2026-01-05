@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name : Character.cs
+// File Name : CharacterEntity.cs
 // Author : Eli Koederitz
 // Creation Date : 12/30/2025
 // Last Modified : 12/30/2025
@@ -13,7 +13,7 @@ using UnityEngine.Events;
 
 namespace COTB.Combat
 {
-    public class CharacterCombatant : Combatant
+    public class CharacterEntity : CombatEntity
     {
         [SerializeField] private Character loadedCharacter;
         [SerializeField] private UnityEvent OnSelectEvent;
@@ -69,6 +69,11 @@ namespace COTB.Combat
         }
 
         public override void TakeDamage(int damage)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Heal(int healing)
         {
             throw new System.NotImplementedException();
         }

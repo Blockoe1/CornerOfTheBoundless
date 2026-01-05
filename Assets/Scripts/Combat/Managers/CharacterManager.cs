@@ -21,13 +21,13 @@ namespace COTB.Combat
         private const string TOGGLE_CHARACTER_ACTION_NAME = "ToggleCharacter";
         #endregion
 
-        [SerializeField] private UnityEvent<CharacterCombatant> OnCharacterSelected;
+        [SerializeField] private UnityEvent<CharacterEntity> OnCharacterSelected;
 
-        private CharacterCombatant[] characters;
+        private CharacterEntity[] characters;
 
         private InputAction toggleCharacterAction;
 
-        private CharacterCombatant selectedCharacter;
+        private CharacterEntity selectedCharacter;
         private int sCharIndex;
 
         #region Properties
@@ -41,7 +41,7 @@ namespace COTB.Combat
             }
         }
 
-        private CharacterCombatant SelectedCharacter
+        private CharacterEntity SelectedCharacter
         { 
             get
             {
@@ -75,7 +75,7 @@ namespace COTB.Combat
             toggleCharacterAction = InputSystem.actions.FindAction(TOGGLE_CHARACTER_ACTION_NAME);
 
             // Find all the characters in the encounter.
-            characters = FindObjectsByType<CharacterCombatant>(FindObjectsSortMode.InstanceID);
+            characters = FindObjectsByType<CharacterEntity>(FindObjectsSortMode.InstanceID);
         }
 
         /// <summary>

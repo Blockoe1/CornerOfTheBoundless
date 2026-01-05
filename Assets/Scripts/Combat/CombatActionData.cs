@@ -13,14 +13,14 @@ namespace COTB.Combat
     public struct CombatActionData
     {
         private readonly Command toUse;
-        private readonly Combatant[] targets;
+        private readonly CombatEntity[] targets;
 
         #region Properties
         public Command Command => toUse;
-        public Combatant[] Targets => targets;
+        public CombatEntity[] Targets => targets;
         #endregion
 
-        public CombatActionData(Command toUse, Combatant[] targets)
+        public CombatActionData(Command toUse, CombatEntity[] targets)
         {
             this.toUse = toUse;
             this.targets = targets;

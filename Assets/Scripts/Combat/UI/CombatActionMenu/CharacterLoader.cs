@@ -17,7 +17,7 @@ namespace COTB.Combat.UI
     {
         [SerializeField] private Button skillsButton;
 
-        private readonly Dictionary<CharacterCombatant, CombatSubMenu> characterMenuDict = new();
+        private readonly Dictionary<CharacterEntity, CombatSubMenu> characterMenuDict = new();
 
         #region Component References
         [Header("Components")]
@@ -36,7 +36,7 @@ namespace COTB.Combat.UI
         /// <summary>
         /// Loads a given character's data to the action menu.
         /// </summary>
-        public void LoadCharacter(CharacterCombatant toLoad)
+        public void LoadCharacter(CharacterEntity toLoad)
         {
             //  If the character doesn't have a registered skills menu, create one.
             if (!characterMenuDict.ContainsKey(toLoad))
