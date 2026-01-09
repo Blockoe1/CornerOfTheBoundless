@@ -10,23 +10,24 @@ using UnityEngine;
 
 namespace COTB.Combat.UI.CharacterControls
 {
-    public abstract class ActionMenuItem : MonoBehaviour, IButtonReadable
+    [System.Serializable]
+    public abstract class ActionMenuItem : IButtonReadable
     {
         [Header("Button Settings")]
         [SerializeField] private CombatButton buttonPrefab;
         [SerializeField] protected string buttonName;
-        [SerializeField, TextArea] private string buttonDescription;
         [SerializeField] private Sprite buttonIcon;
-        [SerializeField, Tooltip("Controls the order that this button is placed compared to other custom " +
-            "ActionMenuItems")] 
-        private int buttonIndex;
+        [SerializeField, TextArea] private string buttonDescription;
+        //[SerializeField, Tooltip("Controls the order that this button is placed compared to other custom " +
+        //    "ActionMenuItems")] 
+        //private int buttonIndex;
 
         private ButtonState currentItemState = ButtonState.Enabled;
         protected CombatButton baseButton;
         protected CharacterCommander commander;
 
         #region Properties
-        internal int ButtonIndex => buttonIndex;
+        //internal int ButtonIndex => buttonIndex;
         public ButtonState currentState { get { return currentItemState; } set { currentItemState = value; } }
         #endregion
 
@@ -74,7 +75,7 @@ namespace COTB.Combat.UI.CharacterControls
         {
             this.commander = commander;
             // Creates the button on the action menu content.
-            baseButton = Instantiate(buttonPrefab, actionMenu.Content);
+            baseButton = GameObject.Instantiate(buttonPrefab, actionMenu.Content);
             // Temp Code.  Sets the button to be the second child of the content.  This way, it's after attack, and
             // ActionMenuItem Initialize functions will be run in reverse buttonIndex order so the highest index item
             // gets made last and ends up at the highest index and doesnt push anything down.
@@ -89,7 +90,7 @@ namespace COTB.Combat.UI.CharacterControls
         public virtual void CleanUp()
         {
             // Destroys the button created for this item.
-            Destroy(baseButton);
+            GameObject.Destroy(baseButton);
         }
 
         /// <summary>

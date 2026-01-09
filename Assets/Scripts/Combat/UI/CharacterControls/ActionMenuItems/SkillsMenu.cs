@@ -13,19 +13,22 @@ namespace COTB.Combat.UI.CharacterControls
     [RequireComponent(typeof(CharacterCommander))]
     public class SkillsMenu : SubMenuItem
     {
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] private CharacterEntity character;
+        [Header("Component References")]
+        [SerializeField] private CharacterEntity character;
 
-        /// <summary>
-        /// Get components on reset.
-        /// </summary>
-        [ContextMenu("Get Component References")]
-        private void Reset()
-        {
-            character = GetComponent<CharacterEntity>();
-        }
-        #endregion
+        //#region Component References
+        //[Header("Components")]
+        //[SerializeReference, ReadOnly] private CharacterEntity character;
+
+        ///// <summary>
+        ///// Get components on reset.
+        ///// </summary>
+        //[ContextMenu("Get Component References")]
+        //private void Reset()
+        //{
+        //    character = GetComponent<CharacterEntity>();
+        //}
+        //#endregion
 
         /// <summary>
         /// Reads this character's skill information and creates button readables from those skills.

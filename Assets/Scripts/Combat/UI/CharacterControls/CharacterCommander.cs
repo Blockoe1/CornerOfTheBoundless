@@ -14,10 +14,10 @@ namespace COTB.Combat.UI.CharacterControls
 {
     public class CharacterCommander : MonoBehaviour
     {
+        [SerializeReference, ClassDropdown(typeof(ActionMenuItem))] private ActionMenuItem[] menuItems;
+
         [SerializeField] private UnityEvent OnSelectEvent;
         [SerializeField] private UnityEvent OnDeselectEvent;
-
-        private ActionMenuItem[] menuItems;
 
         private bool hasInitialized;
 
@@ -46,7 +46,7 @@ namespace COTB.Combat.UI.CharacterControls
         private void Awake()
         {
             // Gets all of the ActionMenuItem components on this character in reverse ButtonIndex order.
-            menuItems = GetComponents<ActionMenuItem>().OrderBy(item => item.ButtonIndex).Reverse().ToArray();
+            //menuItems = GetComponents<ActionMenuItem>().OrderBy(item => item.ButtonIndex).Reverse().ToArray();
         }
         /// <summary>
         /// Initializes this character within the UI system.

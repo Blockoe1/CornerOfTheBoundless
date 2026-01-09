@@ -617,7 +617,6 @@ GameObject:
   - component: {fileID: 1584960276}
   - component: {fileID: 1584960277}
   - component: {fileID: 1584960279}
-  - component: {fileID: 1584960280}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged
@@ -753,6 +752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c1ae8e50b48c54ab0a41114127aa14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CombatUI::COTB.Combat.ActionMenuController
+  menuItems:
+  - rid: 4539545084941566056
   OnSelectEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -760,26 +761,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   actor: {fileID: 1584960276}
---- !u!114 &1584960280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584960273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f57ca427a26f04b800114c52e989d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.SkillsMenu
-  buttonPrefab: {fileID: 4765398340620510053, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
-  buttonName: Skills
-  buttonDescription: Use Skills
-  buttonIcon: {fileID: 0}
-  buttonIndex: 0
-  subMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
-  subMenuButtonPrefab: {fileID: 4424021121277564777, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
-  character: {fileID: 1584960278}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4539545084941566056
+      type: {class: SkillsMenu, ns: COTB.Combat.UI.CharacterControls, asm: CombatUI}
+      data:
+        buttonPrefab: {fileID: 4424021121277564777, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
+        buttonName: Skills
+        buttonIcon: {fileID: 0}
+        buttonDescription: Use Skills
+        subMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
+        subMenuButtonPrefab: {fileID: 4765398340620510053, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+        character: {fileID: 1584960278}
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
