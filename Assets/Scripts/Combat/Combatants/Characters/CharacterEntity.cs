@@ -6,6 +6,7 @@
 //
 // Brief Description : Represents a player controlled character in combat.
 *****************************************************************************/
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +17,7 @@ namespace COTB.Combat
         [SerializeField] private Character loadedCharacter;
 
         #region Properties
-        public Command[] Skills
+        public ReadOnlyCollection<Command> Skills
         {
             get
             {

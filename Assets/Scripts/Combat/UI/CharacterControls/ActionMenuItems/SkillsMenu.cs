@@ -33,8 +33,8 @@ namespace COTB.Combat.UI.CharacterControls
         /// <returns>An array of CommandButtons that link to this character's skills.</returns>
         protected override IButtonReadable[] GetButtonData()
         {
-            IButtonReadable[] buttons = new IButtonReadable[character.Skills.Length];
-            for (int i = 0; i < character.Skills.Length; i++)
+            IButtonReadable[] buttons = new IButtonReadable[character.Skills.Count];
+            for (int i = 0; i < character.Skills.Count; i++)
             {
                 buttons[i] = new CommandButton(character.Skills[i], rootMenu, UseSkill);
             }

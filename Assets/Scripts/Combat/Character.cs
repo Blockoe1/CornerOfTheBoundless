@@ -6,6 +6,8 @@
 //
 // Brief Description : Data structure that describes a character and their current state.
 *****************************************************************************/
+using System.Collections.ObjectModel;
+using System;
 using UnityEngine;
 
 namespace COTB.Combat
@@ -19,11 +21,12 @@ namespace COTB.Combat
         [SerializeField] private Command[] skills;
 
         #region Properties
-        public Command[] UsableSkills
+        public ReadOnlyCollection<Command> UsableSkills
         { 
             get
             {
-                return skills;
+                // Add modifiers that allow excluding skills based on what's not unlocked.
+                return Array.AsReadOnly(skills);
             }
         }
         #endregion
