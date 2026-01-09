@@ -6,7 +6,6 @@
 //
 // Brief Description : Controlls player interactions with this character.
 *****************************************************************************/
-using COTB.UI;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;

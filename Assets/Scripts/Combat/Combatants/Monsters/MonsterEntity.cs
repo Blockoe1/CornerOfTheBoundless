@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace COTB.Combat
 {
-    public class Monster : CombatEntity
+    public class MonsterEntity : CombatEntity
     {
         public override void Heal(int healing)
         {
