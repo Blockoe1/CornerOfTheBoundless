@@ -40,37 +40,30 @@ namespace COTB.Combat.UI.CharacterControls
         public bool HasInitialized => hasInitialized;
         #endregion
 
+        #region Initialization
         /// <summary>
-        /// Find all menu items on awake.
+        /// Initialize the component.
         /// </summary>
         private void Awake()
         {
             // Gets all of the ActionMenuItem components on this character in reverse ButtonIndex order.
             menuItems = GetComponents<ActionMenuItem>().OrderBy(item => item.ButtonIndex).Reverse().ToArray();
         }
-
         /// <summary>
-        /// Causes this character to perform an action in combat.
-        /// </summary>
-        /// <param name="actionData"></param>
-        public void PerformAction(CombatActionData actionData)
-        {
-            actor.PerformCommand(actionData.Command, actionData.Targets);
-        }
-
-        /// <summary>
-        /// Initializes this character
+        /// Initializes this character within the UI system.
         /// </summary>
         /// <param name="actionMenu"></param>
         public void Initialize(CharacterActionMenu actionMenu)
         {
             foreach (var item in menuItems)
             {
-                item.Initialize(actionMenu);
+                item.Initialize(actionMenu, this);
             }
             hasInitialized = true;
         }
+        #endregion
 
+        #region Selection
         /// <summary>
         /// Controls what happens when this character is selected.
         /// </summary>
@@ -93,6 +86,16 @@ namespace COTB.Combat.UI.CharacterControls
             {
                 item.OnDeselected();
             }
+        }
+        #endregion
+
+        /// <summary>
+        /// Causes this character to perform an action in combat.
+        /// </summary>
+        /// <param name="actionData"></param>
+        public void PerformAction(CombatActionData action)
+        {
+            actor.PerformCommand(action.Command, action.Targets);
         }
     }
 }

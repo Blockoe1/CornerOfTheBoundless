@@ -21,8 +21,9 @@ namespace COTB.Combat.UI.CharacterControls
             "ActionMenuItems")] 
         private int buttonIndex;
 
-        private ButtonState currentItemState = ButtonState.Default;
+        private ButtonState currentItemState = ButtonState.Enabled;
         protected CombatButton baseButton;
+        protected CharacterCommander commander;
 
         #region Properties
         internal int ButtonIndex => buttonIndex;
@@ -69,8 +70,9 @@ namespace COTB.Combat.UI.CharacterControls
         /// Sets up the UI for this custom action item.
         /// </summary>
         /// <param name="actionMenu"></param>
-        public virtual void Initialize(CharacterActionMenu actionMenu)
+        public virtual void Initialize(CharacterActionMenu actionMenu, CharacterCommander commander)
         {
+            this.commander = commander;
             // Creates the button on the action menu content.
             baseButton = Instantiate(buttonPrefab, actionMenu.Content);
             // Temp Code.  Sets the button to be the second child of the content.  This way, it's after attack, and

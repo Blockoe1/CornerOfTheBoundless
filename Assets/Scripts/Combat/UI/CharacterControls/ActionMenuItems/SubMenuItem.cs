@@ -31,9 +31,9 @@ namespace COTB.Combat.UI.CharacterControls
         /// Initializes the sub-menu on the actionMenu
         /// </summary>
         /// <param name="actionMenu"></param>
-        public override void Initialize(CharacterActionMenu actionMenu)
+        public override void Initialize(CharacterActionMenu actionMenu, CharacterCommander commander)
         {
-            base.Initialize(actionMenu);
+            base.Initialize(actionMenu, commander);
             rootMenu = actionMenu.RootMenu;
 
             // Create the SubMenu

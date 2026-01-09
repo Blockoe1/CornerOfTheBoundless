@@ -82,7 +82,14 @@ namespace COTB.Combat.UI.CharacterControls
         /// </summary>
         public void OnButtonClicked()
         {
-
+            if (readableData.CheckCurrentState() == ButtonState.Enabled)
+            {
+                readableData.OnButtonClicked();
+            }
+            else
+            {
+                // Call some kind of disabled event that gives the player feedback.
+            }
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace COTB.Combat.UI.CharacterControls
 {
     public enum ButtonState
     {
-        Default,
+        Enabled,
         Disabled,
         Locked
     }
