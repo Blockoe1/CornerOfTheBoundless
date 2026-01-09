@@ -32,6 +32,11 @@ namespace COTB.Combat.UI.CharacterControls
         private void Reset()
         {
             actor = GetComponent<CombatActor>();
+            // Notify all ActionMenuItems of the reset.
+            foreach(var item in menuItems)
+            {
+                item.Reset(gameObject);
+            }
         }
         #endregion
 

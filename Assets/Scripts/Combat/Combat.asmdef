@@ -2,7 +2,6 @@
     "name": "Combat",
     "rootNamespace": "COTB.Combat",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:fc231e386a4921e47a09f324b9fd8446"
     ],
     "includePlatforms": [],

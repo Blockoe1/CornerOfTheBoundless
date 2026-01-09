@@ -68,6 +68,12 @@ namespace COTB.Combat.UI.CharacterControls
         #endregion
 
         /// <summary>
+        /// Reset function called by the CharacterCommander this MenuItem belongs to.
+        /// </summary>
+        /// <param name="parentGO"></param>
+        public virtual void Reset(GameObject parentGO) { }
+
+        /// <summary>
         /// Sets up the UI for this custom action item.
         /// </summary>
         /// <param name="actionMenu"></param>
