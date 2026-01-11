@@ -614,9 +614,9 @@ GameObject:
   - component: {fileID: 1584960275}
   - component: {fileID: 1584960274}
   - component: {fileID: 1584960278}
+  - component: {fileID: 1584960279}
   - component: {fileID: 1584960276}
   - component: {fileID: 1584960277}
-  - component: {fileID: 1584960279}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Untagged

@@ -11,7 +11,7 @@ using UnityEngine.Events;
 
 namespace COTB.Combat.UI.CharacterControls
 {
-    public class CharacterCommander : MonoBehaviour
+    public class CharacterCommander : CombatCommander
     {
         [SerializeReference, ClassDropdown(typeof(ActionMenuItem))] private ActionMenuItem[] menuItems;
 
