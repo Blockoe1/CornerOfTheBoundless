@@ -12,7 +12,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
     [RequireComponent(typeof(RootMenu))]
     public class CharacterActionMenu : MonoBehaviour
@@ -23,11 +23,11 @@ namespace COTB.Combat.UI.CharacterControls
 
         [SerializeField] private ScrollWithSelected scrollController;
 
-        private CharacterCommander[] characters;
+        private CharacterCommanderUI[] characters;
 
         private InputAction toggleCharacterAction;
 
-        private CharacterCommander selectedCharacter;
+        private CharacterCommanderUI selectedCharacter;
         private int sCharIndex;
 
         #region Component References
@@ -61,7 +61,7 @@ namespace COTB.Combat.UI.CharacterControls
             }
         }
 
-        private CharacterCommander SelectedCharacter
+        private CharacterCommanderUI SelectedCharacter
         {
             get
             {
@@ -99,7 +99,7 @@ namespace COTB.Combat.UI.CharacterControls
             toggleCharacterAction = InputSystem.actions.FindAction(TOGGLE_CHARACTER_ACTION_NAME);
 
             // Find all the characters in the encounter.
-            characters = FindObjectsByType<CharacterCommander>(FindObjectsSortMode.InstanceID);
+            characters = FindObjectsByType<CharacterCommanderUI>(FindObjectsSortMode.InstanceID);
         }
 
         /// <summary>

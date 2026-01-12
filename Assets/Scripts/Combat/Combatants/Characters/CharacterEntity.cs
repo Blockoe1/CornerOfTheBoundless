@@ -8,9 +8,8 @@
 *****************************************************************************/
 using System.Collections.ObjectModel;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace COTB.Combat
+namespace COTB.Combat.Characters
 {
     public class CharacterEntity : CombatEntity
     {

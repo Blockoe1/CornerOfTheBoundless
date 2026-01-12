@@ -752,28 +752,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c1ae8e50b48c54ab0a41114127aa14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CombatUI::COTB.Combat.ActionMenuController
+  actor: {fileID: 1584960276}
   menuItems:
-  - rid: 4539545084941566056
+  - rid: 4539545136394403922
   OnSelectEvent:
     m_PersistentCalls:
       m_Calls: []
   OnDeselectEvent:
     m_PersistentCalls:
       m_Calls: []
-  actor: {fileID: 1584960276}
   references:
     version: 2
     RefIds:
-    - rid: 4539545084941566056
-      type: {class: SkillsMenu, ns: COTB.Combat.UI.CharacterControls, asm: CombatUI}
+    - rid: 4539545136394403922
+      type: {class: SkillsMenu, ns: COTB.Combat.UI.CharacterMenu, asm: CombatUI}
       data:
-        buttonPrefab: {fileID: 4424021121277564777, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
+        buttonPrefab: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
         buttonName: Skills
         buttonIcon: {fileID: 0}
         buttonDescription: Use Skills
         subMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
-        subMenuButtonPrefab: {fileID: 4765398340620510053, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
-        character: {fileID: 1584960278}
+        subMenuButtonPrefab: {fileID: 4225827703807982330, guid: ecaf19c4c1ea35340b21559d6b3c0baa, type: 3}
+        character: {fileID: 0}
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
@@ -1028,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1711754766467611706, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1208,7 +1212,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1872023531849115358, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

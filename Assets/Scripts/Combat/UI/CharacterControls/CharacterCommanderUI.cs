@@ -9,9 +9,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    public class CharacterCommander : CombatCommander
+    public class CharacterCommanderUI : CombatCommander
     {
         [SerializeReference, ClassDropdown(typeof(ActionMenuItem))] private ActionMenuItem[] menuItems;
 
@@ -20,28 +20,23 @@ namespace COTB.Combat.UI.CharacterControls
 
         private bool hasInitialized;
 
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] private CombatActor actor;
+        #region Properties
+        public bool HasInitialized => hasInitialized;
+        #endregion
 
         /// <summary>
-        /// Get components on reset.
+        /// Notify the CharacterAction classes contained within this commander of a component reset.
         /// </summary>
         [ContextMenu("Get Component References")]
-        private void Reset()
+        protected override void Reset()
         {
-            actor = GetComponent<CombatActor>();
+            base.Reset();
             // Notify all ActionMenuItems of the reset.
-            foreach(var item in menuItems)
+            foreach (var item in menuItems)
             {
                 item.Reset(gameObject);
             }
         }
-        #endregion
-
-        #region Properties
-        public bool HasInitialized => hasInitialized;
-        #endregion
 
         #region Initialization
         /// <summary>
@@ -98,7 +93,7 @@ namespace COTB.Combat.UI.CharacterControls
         /// <param name="actionData"></param>
         public void PerformAction(CombatActionData action)
         {
-            actor.PerformCommand(action.Command, action.Targets);
+            Actor.PerformCommand(action.Command, action.Targets);
         }
     }
 }

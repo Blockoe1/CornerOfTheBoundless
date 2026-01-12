@@ -8,13 +8,13 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
     [System.Serializable]
     public abstract class ActionMenuItem : IButtonReadable
     {
         [Header("Button Settings")]
-        [SerializeField] private CombatButton buttonPrefab;
+        [SerializeField] private CharacterButton buttonPrefab;
         [SerializeField] protected string buttonName;
         [SerializeField] private Sprite buttonIcon;
         [SerializeField, TextArea] private string buttonDescription;
@@ -23,8 +23,8 @@ namespace COTB.Combat.UI.CharacterControls
         //private int buttonIndex;
 
         private ButtonState currentItemState = ButtonState.Enabled;
-        protected CombatButton baseButton;
-        protected CharacterCommander commander;
+        protected CharacterButton baseButton;
+        protected CharacterCommanderUI commander;
 
         #region Properties
         //internal int ButtonIndex => buttonIndex;
@@ -77,7 +77,7 @@ namespace COTB.Combat.UI.CharacterControls
         /// Sets up the UI for this custom action item.
         /// </summary>
         /// <param name="actionMenu"></param>
-        public virtual void Initialize(CharacterActionMenu actionMenu, CharacterCommander commander)
+        public virtual void Initialize(CharacterActionMenu actionMenu, CharacterCommanderUI commander)
         {
             this.commander = commander;
             // Creates the button on the action menu content.

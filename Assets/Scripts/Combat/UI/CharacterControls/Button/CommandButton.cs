@@ -9,7 +9,7 @@
 using COTB.UI;
 using UnityEngine;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
     public delegate void CommandPerformFunction(CombatActionData action);
     public class CommandButton : IButtonReadable

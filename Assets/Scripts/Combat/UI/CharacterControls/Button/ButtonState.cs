@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
     public enum ButtonState
     {

@@ -11,9 +11,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    public class CombatButton : MonoBehaviour
+    public class CharacterButton : MonoBehaviour
     {
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text descriptionText;

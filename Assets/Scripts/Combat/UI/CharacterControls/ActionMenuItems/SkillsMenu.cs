@@ -7,10 +7,11 @@
 // Brief Description : Creates a skills menu for this character on the action menu.
 *****************************************************************************/
 using UnityEngine;
+using COTB.Combat.Characters;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    [RequireComponent(typeof(CharacterCommander))]
+    [RequireComponent(typeof(CharacterCommanderUI))]
     public class SkillsMenu : SubMenuItem
     {
         #region Component References
