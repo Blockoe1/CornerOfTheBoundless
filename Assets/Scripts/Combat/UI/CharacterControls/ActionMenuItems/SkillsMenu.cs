@@ -2,79 +2,25 @@
 // File Name : SkillsMenu.cs
 // Author : Eli Koederitz
 // Creation Date : 1/4/2026
-// Last Modified : 1/4/2026
+// Last Modified : 1/9/2026
 //
 // Brief Description : Creates a skills menu for this character on the action menu.
 *****************************************************************************/
-using COTB.UI;
 using UnityEngine;
+using COTB.Combat.Characters;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    [RequireComponent(typeof(CharacterCommander))]
+    [RequireComponent(typeof(CharacterCommanderUI))]
     public class SkillsMenu : SubMenuItem
     {
         #region Component References
         [Header("Components")]
         [SerializeReference, ReadOnly] private CharacterEntity character;
-
-        /// <summary>
-        /// Get components on reset.
-        /// </summary>
-        [ContextMenu("Get Component References")]
-        private void Reset()
+        public override void Reset(GameObject parentGO)
         {
-            character = GetComponent<CharacterEntity>();
-        }
-        #endregion
-
-        #region Nested
-        /// <summary>
-        /// Wrapper class that reroutes 
-        /// </summary>
-        private class CommandButton : IButtonReadable
-        {
-            private readonly Command cmd;
-
-            internal CommandButton(Command cmd)
-            {
-                this.cmd = cmd;
-            }
-
-            /// <summary>
-            /// Information getters reroute to the wrapped command.
-            /// </summary>
-            public string GetDescription()
-            {
-                return cmd.Description;
-            }
-            public string GetName()
-            {
-                return cmd.Name;
-            }
-            public Sprite GetIcon()
-            {
-                return cmd.Icon;
-            }
-
-            /// <summary>
-            /// For now, commands are always in the enabled state until I add systems to disable them.
-            /// </summary>
-            /// <returns></returns>
-            public ButtonState CheckCurrentState()
-            {
-                return ButtonState.Default; 
-            }
-
-            /// <summary>
-            /// When a command button is clicked, start targeting for that command.
-            /// </summary>
-            /// <exception cref="System.NotImplementedException"></exception>
-            public void OnButtonClicked()
-            {
-                throw new System.NotImplementedException();
-            }
-        }
+            character = parentGO.GetComponent<CharacterEntity>();
+        } 
         #endregion
 
         /// <summary>
@@ -83,12 +29,21 @@ namespace COTB.Combat.UI.CharacterControls
         /// <returns>An array of CommandButtons that link to this character's skills.</returns>
         protected override IButtonReadable[] GetButtonData()
         {
-            IButtonReadable[] buttons = new IButtonReadable[character.Skills.Length];
-            for (int i = 0; i < character.Skills.Length; i++)
+            IButtonReadable[] buttons = new IButtonReadable[character.Skills.Count];
+            for (int i = 0; i < character.Skills.Count; i++)
             {
-                buttons[i] = new CommandButton(character.Skills[i]);
+                buttons[i] = new CommandButton(character.Skills[i], rootMenu, UseSkill);
             }
             return buttons;
+        }
+
+        /// <summary>
+        /// Function used as a delgate for CombatButtons to tell the character to use a skill.
+        /// </summary>
+        /// <param name="action">Wrapper class for the action to perform.</param>
+        private void UseSkill(CombatActionData action)
+        {
+            commander.PerformAction(action);
         }
     }
 }

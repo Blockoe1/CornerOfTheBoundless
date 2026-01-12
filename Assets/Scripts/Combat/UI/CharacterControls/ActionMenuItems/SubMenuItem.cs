@@ -11,12 +11,13 @@ using COTB.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
     public abstract class SubMenuItem : ActionMenuItem
     {
+        [Header("Sub-Menu Settings")]
         [SerializeField] private CombatSubMenu subMenuPrefab;
-        [SerializeField] private CombatButton subMenuButtonPrefab;
+        [SerializeField] private CharacterButton subMenuButtonPrefab;
 
         private SubMenu subMenu;
         protected RootMenu rootMenu;
@@ -31,9 +32,9 @@ namespace COTB.Combat.UI.CharacterControls
         /// Initializes the sub-menu on the actionMenu
         /// </summary>
         /// <param name="actionMenu"></param>
-        public override void Initialize(CharacterActionMenu actionMenu)
+        public override void Initialize(CharacterActionMenu actionMenu, CharacterCommanderUI commander)
         {
-            base.Initialize(actionMenu);
+            base.Initialize(actionMenu, commander);
             rootMenu = actionMenu.RootMenu;
 
             // Create the SubMenu
@@ -47,7 +48,7 @@ namespace COTB.Combat.UI.CharacterControls
         {
             base.CleanUp();
             // Destroy the sub-menu.
-            Destroy(subMenu);
+            GameObject.Destroy(subMenu);
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace COTB.Combat.UI.CharacterControls
         /// <returns>The created sub-menu that is created as a child of this object.</returns>
         internal CombatSubMenu CreateSubMenu(IButtonReadable[] buttonData, Transform menuParent, Button parentButton)
         {
-            CombatSubMenu subMenu = Instantiate(subMenuPrefab, menuParent);
+            CombatSubMenu subMenu = GameObject.Instantiate(subMenuPrefab, menuParent);
             InitializeSubMenu(subMenu, buttonData, parentButton);
             subMenu.Unload();
             return subMenu;
@@ -89,7 +90,7 @@ namespace COTB.Combat.UI.CharacterControls
             }
 
             Button[] buttons = ConstructButtons(buttonData, subMenu);
-            subMenu.Initialize(buttons[0], parentButton, buttons.Length, name + buttonName + "SubMenu");
+            subMenu.Initialize(buttons[0], parentButton, buttons.Length, commander.name + buttonName + "SubMenu");
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace COTB.Combat.UI.CharacterControls
         /// <returns>The created button.</returns>
         private Button ConstructButton(IButtonReadable buttonData, CombatSubMenu parentMenu)
         {
-            CombatButton createdButton = Instantiate(subMenuButtonPrefab, parentMenu.Content);
+            CharacterButton createdButton = GameObject.Instantiate(subMenuButtonPrefab, parentMenu.Content);
             createdButton.Initialize(buttonData, parentMenu.ScrollController, parentMenu);
             return createdButton.LinkedButton;
         }

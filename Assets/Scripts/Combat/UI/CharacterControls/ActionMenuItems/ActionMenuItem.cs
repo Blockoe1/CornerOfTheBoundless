@@ -8,24 +8,26 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    public abstract class ActionMenuItem : MonoBehaviour, IButtonReadable
+    [System.Serializable]
+    public abstract class ActionMenuItem : IButtonReadable
     {
         [Header("Button Settings")]
-        [SerializeField] private CombatButton buttonPrefab;
+        [SerializeField] private CharacterButton buttonPrefab;
         [SerializeField] protected string buttonName;
-        [SerializeField, TextArea] private string buttonDescription;
         [SerializeField] private Sprite buttonIcon;
-        [SerializeField, Tooltip("Controls the order that this button is placed compared to other custom " +
-            "ActionMenuItems")] 
-        private int buttonIndex;
+        [SerializeField, TextArea] private string buttonDescription;
+        //[SerializeField, Tooltip("Controls the order that this button is placed compared to other custom " +
+        //    "ActionMenuItems")] 
+        //private int buttonIndex;
 
-        private ButtonState currentItemState = ButtonState.Default;
-        protected CombatButton baseButton;
+        private ButtonState currentItemState = ButtonState.Enabled;
+        protected CharacterButton baseButton;
+        protected CharacterCommanderUI commander;
 
         #region Properties
-        internal int ButtonIndex => buttonIndex;
+        //internal int ButtonIndex => buttonIndex;
         public ButtonState currentState { get { return currentItemState; } set { currentItemState = value; } }
         #endregion
 
@@ -66,13 +68,20 @@ namespace COTB.Combat.UI.CharacterControls
         #endregion
 
         /// <summary>
+        /// Reset function called by the CharacterCommander this MenuItem belongs to.
+        /// </summary>
+        /// <param name="parentGO"></param>
+        public virtual void Reset(GameObject parentGO) { }
+
+        /// <summary>
         /// Sets up the UI for this custom action item.
         /// </summary>
         /// <param name="actionMenu"></param>
-        public virtual void Initialize(CharacterActionMenu actionMenu)
+        public virtual void Initialize(CharacterActionMenu actionMenu, CharacterCommanderUI commander)
         {
+            this.commander = commander;
             // Creates the button on the action menu content.
-            baseButton = Instantiate(buttonPrefab, actionMenu.Content);
+            baseButton = GameObject.Instantiate(buttonPrefab, actionMenu.Content);
             // Temp Code.  Sets the button to be the second child of the content.  This way, it's after attack, and
             // ActionMenuItem Initialize functions will be run in reverse buttonIndex order so the highest index item
             // gets made last and ends up at the highest index and doesnt push anything down.
@@ -87,7 +96,7 @@ namespace COTB.Combat.UI.CharacterControls
         public virtual void CleanUp()
         {
             // Destroys the button created for this item.
-            Destroy(baseButton);
+            GameObject.Destroy(baseButton);
         }
 
         /// <summary>

@@ -6,71 +6,62 @@
 //
 // Brief Description : Controlls player interactions with this character.
 *****************************************************************************/
-using COTB.UI;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace COTB.Combat.UI.CharacterControls
+namespace COTB.Combat.UI.CharacterMenu
 {
-    public class CharacterCommander : MonoBehaviour
+    public class CharacterCommanderUI : CombatCommander
     {
+        [SerializeReference, ClassDropdown(typeof(ActionMenuItem))] private ActionMenuItem[] menuItems;
+
         [SerializeField] private UnityEvent OnSelectEvent;
         [SerializeField] private UnityEvent OnDeselectEvent;
 
-        private ActionMenuItem[] menuItems;
-
         private bool hasInitialized;
-
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] private CombatActor actor;
-
-        /// <summary>
-        /// Get components on reset.
-        /// </summary>
-        [ContextMenu("Get Component References")]
-        private void Reset()
-        {
-            actor = GetComponent<CombatActor>();
-        }
-        #endregion
 
         #region Properties
         public bool HasInitialized => hasInitialized;
         #endregion
 
         /// <summary>
-        /// Find all menu items on awake.
+        /// Notify the CharacterAction classes contained within this commander of a component reset.
+        /// </summary>
+        [ContextMenu("Get Component References")]
+        protected override void Reset()
+        {
+            base.Reset();
+            // Notify all ActionMenuItems of the reset.
+            foreach (var item in menuItems)
+            {
+                item.Reset(gameObject);
+            }
+        }
+
+        #region Initialization
+        /// <summary>
+        /// Initialize the component.
         /// </summary>
         private void Awake()
         {
             // Gets all of the ActionMenuItem components on this character in reverse ButtonIndex order.
-            menuItems = GetComponents<ActionMenuItem>().OrderBy(item => item.ButtonIndex).Reverse().ToArray();
+            //menuItems = GetComponents<ActionMenuItem>().OrderBy(item => item.ButtonIndex).Reverse().ToArray();
         }
-
         /// <summary>
-        /// Causes this character to perform an action in combat.
-        /// </summary>
-        /// <param name="actionData"></param>
-        public void PerformAction(CombatActionData actionData)
-        {
-            actor.PerformCommand(actionData.Command, actionData.Targets);
-        }
-
-        /// <summary>
-        /// Initializes this character
+        /// Initializes this character within the UI system.
         /// </summary>
         /// <param name="actionMenu"></param>
         public void Initialize(CharacterActionMenu actionMenu)
         {
             foreach (var item in menuItems)
             {
-                item.Initialize(actionMenu);
+                item.Initialize(actionMenu, this);
             }
             hasInitialized = true;
         }
+        #endregion
 
+        #region Selection
         /// <summary>
         /// Controls what happens when this character is selected.
         /// </summary>
@@ -93,6 +84,16 @@ namespace COTB.Combat.UI.CharacterControls
             {
                 item.OnDeselected();
             }
+        }
+        #endregion
+
+        /// <summary>
+        /// Causes this character to perform an action in combat.
+        /// </summary>
+        /// <param name="actionData"></param>
+        public void PerformAction(CombatActionData action)
+        {
+            Actor.PerformCommand(action.Command, action.Targets);
         }
     }
 }

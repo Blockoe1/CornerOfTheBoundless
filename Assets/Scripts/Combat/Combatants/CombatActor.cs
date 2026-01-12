@@ -21,6 +21,7 @@ namespace COTB.Combat
         public void PerformCommand(Command toPerform, CombatEntity[] targets)
         {
             // Add the command's main function to the queue.
+            targets ??= new CombatEntity[] { debugTarget }; 
             CombatQueue.AddToQueue(toPerform.CommandMain(targets, this), this);
         }
 

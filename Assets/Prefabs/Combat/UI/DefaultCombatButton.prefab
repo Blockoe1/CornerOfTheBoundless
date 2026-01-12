@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7452923395856801158}
-  - component: {fileID: 4765398340620510053}
+  - component: {fileID: 5035719995800309494}
   - component: {fileID: 4019947583369626438}
   - component: {fileID: 8414686816470317698}
   - component: {fileID: 5483559248086448513}
@@ -133,7 +133,7 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -47.5}
   m_SizeDelta: {x: 350, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4765398340620510053
+--- !u!114 &5035719995800309494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2890542806316882432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a43a2106ecbf904e9255beaf7e1170b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c7c1adaf25d03949a44f1d51a8b3cb8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Combat::COTB.Combat.CombatButton
+  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.CharacterControls.CharacterButton
   nameText: {fileID: 5040479821801188057}
   descriptionText: {fileID: 1080270112597818185}
   icon: {fileID: 3707776780320214751}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -231,7 +231,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8414686816470317698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: COTB.Combat.UI.CharacterControls.CombatButton,
+          CombatUI
+        m_MethodName: OnButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4794100260467441884
 MonoBehaviour:
   m_ObjectHideFlags: 0
