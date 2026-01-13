@@ -12,6 +12,8 @@ namespace COTB.Combat.Characters
 {
     public abstract class ListAction : CharacterAction
     {
-    
+        [SerializeField] protected string actionName;
+        [SerializeField] protected Sprite actionIcon;
+        [SerializeField, TextArea] protected string actionDescription;
     }
 }

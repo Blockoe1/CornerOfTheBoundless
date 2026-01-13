@@ -12,8 +12,18 @@ namespace COTB.Combat.Characters
 {
     public class CharacterCommander : CombatCommander
     {
+        [Header("Character Actions")]
+        [SerializeField, Tooltip("")] private CommandTags lockedTags;
         [SerializeReference, ClassDropdown(typeof(CharacterAction))] private CharacterAction[] actions;
 
+        #region Properties
+        public CommandTags LockedTags 
+        { 
+            get { return lockedTags; } 
+            set { lockedTags = value; }
+        }
+        
+        #endregion
 
         /// <summary>
         /// Propogate reset calls to the CharacterActions so they can get references to components on this character.

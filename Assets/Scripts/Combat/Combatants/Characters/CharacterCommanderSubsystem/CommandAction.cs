@@ -12,6 +12,6 @@ namespace COTB.Combat.Characters
 {
     public class CommandAction : CharacterAction
     {
-    
+        [SerializeField] private Command command;
     }
 }

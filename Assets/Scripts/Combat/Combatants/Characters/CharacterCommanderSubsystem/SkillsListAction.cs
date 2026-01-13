@@ -12,6 +12,6 @@ namespace COTB.Combat.Characters
 {
     public class SkillsListAction : ListAction
     {
-    
+
     }
 }

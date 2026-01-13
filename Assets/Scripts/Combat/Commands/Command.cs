@@ -17,6 +17,7 @@ namespace COTB.Combat
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;
         [SerializeField] private Sprite icon;
+        [SerializeField] private CommandTags tags;
 
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
         [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
