@@ -805,6 +805,7 @@ MonoBehaviour:
         actionName: 
         actionIcon: {fileID: 0}
         actionDescription: 
+        actionTags: 0
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}

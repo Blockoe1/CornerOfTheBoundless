@@ -22,13 +22,13 @@ namespace COTB.Combat.UI.CharacterMenu
         //    "ActionMenuItems")] 
         //private int buttonIndex;
 
-        private ButtonState currentItemState = ButtonState.Enabled;
+        private ActionState currentItemState = ActionState.Enabled;
         protected CharacterButton baseButton;
         protected CharacterCommanderUI commander;
 
         #region Properties
         //internal int ButtonIndex => buttonIndex;
-        public ButtonState currentState { get { return currentItemState; } set { currentItemState = value; } }
+        public ActionState currentState { get { return currentItemState; } set { currentItemState = value; } }
         #endregion
 
         #region Button Readable Functions
@@ -36,7 +36,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Buttons linked to menuItems are enabled by default.
         /// </summary>
         /// <returns>The default button state.</returns>
-        public virtual ButtonState CheckCurrentState()
+        public virtual ActionState CheckCurrentState()
         {
             return currentItemState;
         }

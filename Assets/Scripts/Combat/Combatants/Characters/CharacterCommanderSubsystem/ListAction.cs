@@ -15,5 +15,12 @@ namespace COTB.Combat.Characters
         [SerializeField] protected string actionName;
         [SerializeField] protected Sprite actionIcon;
         [SerializeField, TextArea] protected string actionDescription;
+        [SerializeField] protected CommandTags actionTags;
+
+        #region Properties
+        public override string Name => actionName;
+        public override string Description => actionDescription;
+        public override Sprite Icon => actionIcon;
+        #endregion
     }
 }

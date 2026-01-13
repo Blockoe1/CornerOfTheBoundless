@@ -45,9 +45,9 @@ namespace COTB.Combat.UI.CharacterMenu
         /// For now, commands are always in the enabled state until I add systems to disable them.
         /// </summary>
         /// <returns></returns>
-        public ButtonState CheckCurrentState()
+        public ActionState CheckCurrentState()
         {
-            return ButtonState.Enabled;
+            return ActionState.Enabled;
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         public void OnButtonClicked()
         {
-            if (readableData.CheckCurrentState() == ButtonState.Enabled)
+            if (readableData.CheckCurrentState() == ActionState.Enabled)
             {
                 readableData.OnButtonClicked();
             }

@@ -41,6 +41,6 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Checks the current state oof the button and whether it can be clicked or not.
         /// </summary>
         /// <returns>The current buttonState that the button should be in.</returns>
-        ButtonState CheckCurrentState();
+        ActionState CheckCurrentState();
     }
 }

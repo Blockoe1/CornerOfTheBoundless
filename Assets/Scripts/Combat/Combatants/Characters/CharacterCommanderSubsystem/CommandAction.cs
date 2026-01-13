@@ -13,5 +13,11 @@ namespace COTB.Combat.Characters
     public class CommandAction : CharacterAction
     {
         [SerializeField] private Command command;
+
+        #region Properties
+        public override string Name => command == null ? "" : command.Name;
+        public override string Description => command == null ? "" : command.Description;
+        public override Sprite Icon => command == null ? null : command.Icon;
+        #endregion
     }
 }

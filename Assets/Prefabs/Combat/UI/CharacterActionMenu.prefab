@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6669768715424688238}
   - component: {fileID: 8402376001227476610}
   - component: {fileID: 447211994163667741}
+  - component: {fileID: 524598943638859458}
   m_Layer: 5
   m_Name: CharacterActionMenu
   m_TagString: Untagged
@@ -67,6 +68,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Combat::COTB.Combat.CharacterActionMenu
   scrollController: {fileID: 5725028096326536766}
   rootMenu: {fileID: 8402376001227476610}
+--- !u!114 &524598943638859458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5055084778077756174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8512fff0a616525439d069760f4fc265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CombatUI::COTB.Combat.UI.CharacterMenu.CharacterSelector
 --- !u!1001 &1715827677464961980
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,13 +4,13 @@
 // Creation Date : 1/3/2025
 // Last Modified : 1/3/2025
 //
-// Brief Description : Represents the different states that combat menu buttons can be in.
+// Brief Description : Represents the different states that combat menu actions can be in.
 *****************************************************************************/
 using UnityEngine;
 
-namespace COTB.Combat.UI.CharacterMenu
+namespace COTB.Combat
 {
-    public enum ButtonState
+    public enum ActionState
     {
         Enabled,
         Disabled,
