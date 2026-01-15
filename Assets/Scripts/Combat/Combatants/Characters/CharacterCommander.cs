@@ -23,24 +23,12 @@ namespace COTB.Combat.Characters
         /// <summary>
         /// Propogate reset calls to the CharacterActions so they can get references to components on this character.
         /// </summary>
-        protected override void Reset()
-        {
-            base.Reset();
-            foreach(var action in actions)
-            {
-                action.Reset(this);
-            }
-        }
-
-        /// <summary>
-        /// Send a reference to this commander to all referenced actions that this character can perform so they can
-        /// perform character specific checks.
-        /// </summary>
-        private void OnValidate()
+        [ContextMenu("Get Component References")]
+        protected override void GetComponents()
         {
             foreach(var action in actions)
             {
-                action.OnValidate(this);
+                action.GetComponents(this);
             }
         }
 
@@ -54,7 +42,7 @@ namespace COTB.Combat.Characters
             bool isLocked = false;
             foreach (Predicate<CharacterAction> predicate in lockPredicates)
             {
-                isLocked|= predicate(action);
+                isLocked |= predicate(action);
             }
             return isLocked;
         }

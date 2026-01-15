@@ -12,12 +12,37 @@ namespace COTB.Combat.Characters
 {
     public class SkillsListAction : ListAction
     {
+        private CharacterAction[] subActions;
+
         #region Component References
         [Header("Components")]
         [SerializeReference, ReadOnly] private CharacterEntity character;
-        internal override void Reset(CharacterCommander ownedCommander)
+
+        internal override void GetComponents(CharacterCommander ownedCommander)
         {
             character = ownedCommander.GetComponent<CharacterEntity>();
+        }
+        #endregion
+
+        public SkillsListAction(CharacterCommander commander) : base(commander)
+        {
+        }
+
+        #region Properties
+        public override CharacterAction[] SubActions
+        {
+            get
+            {
+                if (subActions == null)
+                {
+                    subActions = new CharacterAction[character.Skills.Count];
+                    for(int i = 0; i < subActions.Length; i++)
+                    {
+                        subActions[i] = character.Skills[i].GetCharacterAction(Commander);
+                    }
+                }
+                return subActions;
+            }
         }
         #endregion
     }

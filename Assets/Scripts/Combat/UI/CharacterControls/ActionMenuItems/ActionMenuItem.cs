@@ -71,7 +71,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Reset function called by the CharacterCommander this MenuItem belongs to.
         /// </summary>
         /// <param name="parentGO"></param>
-        public virtual void Reset(GameObject parentGO) { }
+        public virtual void GetComponents(GameObject parentGO) { }
 
         /// <summary>
         /// Sets up the UI for this custom action item.

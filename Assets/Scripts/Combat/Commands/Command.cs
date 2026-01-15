@@ -6,6 +6,7 @@
 //
 // Brief Description : Data structure containing information about a given command that a combatant can perform.
 *****************************************************************************/
+using COTB.Combat.Characters;
 using System.Collections;
 using UnityEngine;
 
@@ -54,6 +55,15 @@ namespace COTB.Combat
         {
             // Return true as a placeholder.
             return true;
+        }
+
+        /// <summary>
+        /// Gets a CharacterAction wrapping this command.
+        /// </summary>
+        /// <returns></returns>
+        public virtual CharacterAction GetCharacterAction(CharacterCommander linkedCommander)
+        {
+            return new CommandAction(this, linkedCommander);
         }
     }
 }

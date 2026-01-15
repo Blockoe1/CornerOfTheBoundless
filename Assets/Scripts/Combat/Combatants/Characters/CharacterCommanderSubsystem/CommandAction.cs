@@ -15,12 +15,49 @@ namespace COTB.Combat.Characters
         [SerializeField] private Command command;
 
         #region Properties
-        public override string Name => command == null ? "" : command.Name;
-        public override string Description => command == null ? "" : command.Description;
-        public override Sprite Icon => command == null ? null : command.Icon;
-        public override CommandTags Tags => command == null ? CommandTags.None : command.Tags;
+        public Command Command => command;
+        #endregion
 
-        protected override bool IsDisabled => command == null ? true : !command.CheckValid();
+        public CommandAction(Command command, CharacterCommander commander) : base(commander)
+        {
+            this.command = command;
+        }
+
+        #region API
+        public override void PerformAction(int index)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override string GetNameRelative(int index)
+        {
+            return command == null ? "" : command.Name;
+        }
+
+        public override string GetDescriptionRelative(int index)
+        {
+            return command == null ? "" : command.Description;
+        }
+
+        public override Sprite GetIconRelative(int index)
+        {
+            return command == null ? null : command.Icon;
+        }
+
+        public override CommandTags GetTagsRelative(int index)
+        {
+            return command == null ? CommandTags.None : command.Tags;
+        }
+
+        protected override bool IsDisabledRelative(int index)
+        {
+            return command == null ? true : !command.CheckValid();
+        }
+
+        protected override bool IsLockedRelative(int index)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
     }
 }

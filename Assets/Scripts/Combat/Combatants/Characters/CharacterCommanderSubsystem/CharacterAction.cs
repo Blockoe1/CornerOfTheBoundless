@@ -13,59 +13,31 @@ namespace COTB.Combat.Characters
     [System.Serializable]
     public abstract class CharacterAction
     {
-        [SerializeField, HideInInspector] private CharacterCommander commander;
+        [SerializeReference, HideInInspector] private CharacterCommander commander;
 
         private bool isCheckingState;
 
         #region Properties
-        public abstract string Name { get; }
-        public abstract string Description { get; }
-        public abstract Sprite Icon { get; }
-        public abstract CommandTags Tags { get; }
+        public string Name => GetNameRelative(-1);
+        public string Description => GetDescriptionRelative(-1);
+        public Sprite Icon => GetIconRelative(-1);
+        public CommandTags Tags => GetTagsRelative(-1);
 
-        public virtual ActionState State
-        {
-            get
-            {
-                // Safeguard in case State is checked within an existing state check, because LockPredicates check
-                // the action.
-                if (isCheckingState) { return ActionState.Enabled; }
-
-                isCheckingState = true;
-                ActionState returnValue;
-                if (IsDisabled)
-                {
-                    returnValue = ActionState.Disabled;
-                }
-                else if (IsLocked)
-                {
-                    returnValue = ActionState.Locked;
-                }
-                else
-                {
-                    returnValue = ActionState.Enabled;
-                }
-                isCheckingState = false;
-                return returnValue;
-            }
-        }
-        protected abstract bool IsDisabled { get; }
-        protected bool IsLocked
-        {
-            get
-            {
-                return commander != null && commander.CheckLocked(this);
-            }
-        }
+        public ActionState State => GetStateRelative(-1);
 
         protected CharacterCommander Commander => commander;
         #endregion
+
+        public CharacterAction(CharacterCommander commander)
+        {
+            this.commander = commander;
+        }
 
         /// <summary>
         /// Allows this action to reference components on the character commander that this action is referenced by.
         /// </summary>
         /// <param name="ownedCommander"></param>
-        internal virtual void Reset(CharacterCommander ownedCommander) { }
+        internal virtual void GetComponents(CharacterCommander ownedCommander) { }
 
         /// <summary>
         /// Stores a referenec to the CharacterCommander referencing this action.
@@ -76,9 +48,40 @@ namespace COTB.Combat.Characters
             commander = ownedCommander;
         }
 
-        /// <summary>
-        /// Has the combatant this action belongs to perform this action.
-        /// </summary>
-        //public abstract void PerformAction();
+        #region Button API
+        // Each Getter for a property takes in an index value so that buttons can
+        // get different info based on their index.  -1 Is always the parent action.
+        public abstract void PerformAction(int index);
+        public abstract string GetNameRelative(int index);
+        public abstract string GetDescriptionRelative(int index);
+        public abstract Sprite GetIconRelative(int index);
+        public abstract CommandTags GetTagsRelative(int index);
+        public virtual ActionState GetStateRelative(int index)
+        {
+            // Safeguard in case State is checked within an existing state check, because LockPredicates check
+            // the action.
+            if (isCheckingState) { return ActionState.Enabled; }
+
+            isCheckingState = true;
+            ActionState returnValue;
+            if (IsDisabledRelative(index))
+            {
+                returnValue = ActionState.Disabled;
+            }
+            else if (IsLockedRelative(index))
+            {
+                returnValue = ActionState.Locked;
+            }
+            else
+            {
+                returnValue = ActionState.Enabled;
+            }
+            isCheckingState = false;
+            return returnValue;
+        }
+        protected abstract bool IsDisabledRelative(int index);
+        protected abstract bool IsLockedRelative(int index);
+
+        #endregion
     }
 }

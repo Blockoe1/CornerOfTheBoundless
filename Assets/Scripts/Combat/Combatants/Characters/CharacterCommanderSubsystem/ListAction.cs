@@ -17,6 +17,10 @@ namespace COTB.Combat.Characters
         [SerializeField, TextArea] protected string actionDescription;
         [SerializeField] protected CommandTags actionTags;
 
+        protected ListAction(CharacterCommander commander) : base(commander)
+        {
+        }
+
         #region Properties
         public override string Name => actionName;
         public override string Description => actionDescription;
@@ -24,6 +28,15 @@ namespace COTB.Combat.Characters
         public override CommandTags Tags => actionTags;
         // Sub-Menus can never be disabled, only locked for simplicity.
         protected override bool IsDisabled => false;
+
+        public abstract CharacterAction[] SubActions { get; }
         #endregion
+
+        /// <summary>
+        /// ListActions cannot be performed with the default call.
+        /// </summary>
+        public override void PerformAction() { }
+
+
     }
 }

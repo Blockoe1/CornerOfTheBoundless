@@ -28,13 +28,12 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Notify the CharacterAction classes contained within this commander of a component reset.
         /// </summary>
         [ContextMenu("Get Component References")]
-        protected override void Reset()
+        protected override void GetComponents()
         {
-            base.Reset();
             // Notify all ActionMenuItems of the reset.
             foreach (var item in menuItems)
             {
-                item.Reset(gameObject);
+                item.GetComponents(gameObject);
             }
         }
 

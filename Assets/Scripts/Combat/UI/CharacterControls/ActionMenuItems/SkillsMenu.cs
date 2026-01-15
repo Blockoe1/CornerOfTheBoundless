@@ -17,7 +17,7 @@ namespace COTB.Combat.UI.CharacterMenu
         #region Component References
         [Header("Components")]
         [SerializeReference, ReadOnly] private CharacterEntity character;
-        public override void Reset(GameObject parentGO)
+        public override void GetComponents(GameObject parentGO)
         {
             character = parentGO.GetComponent<CharacterEntity>();
         } 
