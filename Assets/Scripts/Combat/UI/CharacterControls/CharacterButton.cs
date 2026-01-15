@@ -19,7 +19,7 @@ namespace COTB.Combat.UI.CharacterMenu
         [SerializeField] private TMP_Text descriptionText;
         [SerializeField] private Image icon;
 
-        private IButtonReadable readableData;
+        private ICommanderReadable readableData;
         private Menu parentMenu;
 
         #region Component References
@@ -48,7 +48,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="buttonData">The button data that this button is based on.</param>
         /// <param name="parentScrollController">The scroll controller that this button belongs to.</param>
         /// <param name="parentMenu">menu this button belongs to.</param>
-        public void Initialize(IButtonReadable buttonData, ScrollWithSelected parentScrollController, Menu parentMenu)
+        public void Initialize(ICommanderReadable buttonData, ScrollWithSelected parentScrollController, Menu parentMenu)
         {
             detector.ScrollController = parentScrollController;
             readableData = buttonData;
@@ -82,14 +82,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         public void OnButtonClicked()
         {
-            if (readableData.CheckCurrentState() == ActionState.Enabled)
-            {
-                readableData.OnButtonClicked();
-            }
-            else
-            {
-                // Call some kind of disabled event that gives the player feedback.
-            }
+            
         }
 
         /// <summary>

@@ -21,7 +21,9 @@ namespace COTB.Combat.UI.CharacterMenu
 
         private readonly Dictionary<CharacterCommander, CharacterMenuContext> characterMenus = new();
 
-        private event Action OnMenuRefreshed;
+        private event Action<CharacterCommander> OnMenuRefreshed;
+
+        private CharacterCommander recentCharacter;
 
         #region Component References
         [Header("Components")]
@@ -47,7 +49,6 @@ namespace COTB.Combat.UI.CharacterMenu
         private class CharacterMenuContext
         {
             private CharacterButton[] menuButtons;
-
         }
         #endregion
 
@@ -64,11 +65,24 @@ namespace COTB.Combat.UI.CharacterMenu
 
             // Load the menu context associated with this character.
 
+            recentCharacter = character;
+            Refresh(character);
         }
 
+        /// <summary>
+        /// Refreshes using the most recently loaded character.
+        /// </summary>
         public void Refresh()
         {
-
+            Refresh(recentCharacter);
+        }
+        /// <summary>
+        /// Refreshes the action menu to ensure all buttons are up to date.
+        /// </summary>
+        /// <param name="character"></param>
+        private void Refresh(CharacterCommander character)
+        {
+            OnMenuRefreshed?.Invoke(character);
         }
     }
 }
