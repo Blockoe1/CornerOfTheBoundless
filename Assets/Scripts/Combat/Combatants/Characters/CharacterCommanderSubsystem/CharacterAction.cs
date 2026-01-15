@@ -11,7 +11,7 @@ using UnityEngine;
 namespace COTB.Combat.Characters
 {
     [System.Serializable]
-    public abstract class CharacterAction : IButtonReadable
+    public abstract class CharacterAction : ICommanderReadable
     {
         /// <summary>
         /// Allows this action to reference components on the character commander that this action is referenced by.

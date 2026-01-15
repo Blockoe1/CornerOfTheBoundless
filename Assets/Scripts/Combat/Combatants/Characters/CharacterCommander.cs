@@ -18,7 +18,7 @@ namespace COTB.Combat.Characters
         //[SerializeField, Tooltip("")] private CommandTags lockedTags;
         [SerializeReference, ClassDropdown(typeof(CharacterAction))] private CharacterAction[] actions;
 
-        private readonly List<Predicate<CharacterAction>> lockPredicates = new();
+        private readonly List<Predicate<ICommanderReadable>> lockPredicates = new();
 
         /// <summary>
         /// Propogate reset calls to the CharacterActions so they can get references to components on this character.
@@ -37,10 +37,10 @@ namespace COTB.Combat.Characters
         /// </summary>
         /// <param name="action"></param>
         /// <returns>True if this action is locked for this character.</returns>
-        public bool CheckLocked(CharacterAction action)
+        public bool CheckLocked(ICommanderReadable action)
         {
             bool isLocked = false;
-            foreach (Predicate<CharacterAction> predicate in lockPredicates)
+            foreach (Predicate<ICommanderReadable> predicate in lockPredicates)
             {
                 isLocked |= predicate(action);
             }

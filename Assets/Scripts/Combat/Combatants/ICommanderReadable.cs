@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace COTB.Combat
 {
-    public interface IButtonReadable
+    public interface ICommanderReadable
     {
         string GetName();
         string GetDescription();

@@ -13,7 +13,7 @@ using UnityEngine;
 namespace COTB.Combat
 {
     [CreateAssetMenu(fileName = "Command", menuName = "ScriptableObjects/Combat/Command")]
-    public class Command : ScriptableObject, IButtonReadable
+    public class Command : ScriptableObject, ICommanderReadable
     {
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;

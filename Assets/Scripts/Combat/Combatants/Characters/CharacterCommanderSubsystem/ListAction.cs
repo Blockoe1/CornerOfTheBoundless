@@ -18,7 +18,7 @@ namespace COTB.Combat.Characters
         [SerializeField] protected CommandTags actionTags;
 
         #region Properties
-        public abstract CharacterAction[] SubActions { get; }
+        public abstract ICommanderReadable[] SubActions { get; }
         #endregion
 
         #region Button Getters
