@@ -8,6 +8,7 @@
 *****************************************************************************/
 using COTB.Combat.Characters;
 using COTB.UI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace COTB.Combat.UI.CharacterMenu
 
         private readonly Dictionary<CharacterCommander, CharacterMenuContext> characterMenus = new();
 
+        private event Action OnMenuRefreshed;
 
         #region Component References
         [Header("Components")]
@@ -44,6 +46,7 @@ namespace COTB.Combat.UI.CharacterMenu
         #region Nested
         private class CharacterMenuContext
         {
+            private CharacterButton[] menuButtons;
 
         }
         #endregion
@@ -60,6 +63,12 @@ namespace COTB.Combat.UI.CharacterMenu
             }
 
             // Load the menu context associated with this character.
+
+        }
+
+        public void Refresh()
+        {
+
         }
     }
 }

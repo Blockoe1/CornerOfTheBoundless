@@ -18,6 +18,9 @@ namespace COTB.Combat.Characters
         public override string Name => command == null ? "" : command.Name;
         public override string Description => command == null ? "" : command.Description;
         public override Sprite Icon => command == null ? null : command.Icon;
+        public override CommandTags Tags => command == null ? CommandTags.None : command.Tags;
+
+        protected override bool IsDisabled => command == null ? true : !command.CheckValid();
         #endregion
     }
 }

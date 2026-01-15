@@ -788,24 +788,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.Characters.CharacterCommander
   actor: {fileID: 1584960276}
-  lockedTags: 0
   actions:
   - rid: 4539545158394839129
   - rid: 4539545158394839149
+  - rid: 4539545201939316736
+  - rid: 4539545201939316737
+  - rid: 4539545201939316738
   references:
     version: 2
     RefIds:
     - rid: 4539545158394839129
       type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
       data:
+        commander: {fileID: 1584960280}
         command: {fileID: 0}
     - rid: 4539545158394839149
       type: {class: SkillsListAction, ns: COTB.Combat.Characters, asm: Combat}
       data:
-        actionName: 
+        commander: {fileID: 1584960280}
+        actionName: Skills
         actionIcon: {fileID: 0}
-        actionDescription: 
-        actionTags: 0
+        actionDescription: Use Skills
+        actionTags: 2
+    - rid: 4539545201939316736
+      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
+      data:
+        commander: {fileID: 1584960280}
+        command: {fileID: 0}
+    - rid: 4539545201939316737
+      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
+      data:
+        commander: {fileID: 1584960280}
+        command: {fileID: 0}
+    - rid: 4539545201939316738
+      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
+      data:
+        commander: {fileID: 1584960280}
+        command: {fileID: 0}
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
@@ -1052,18 +1071,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457071648}
     m_Modifications:
-    - target: {fileID: 989601096937726770, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_Navigation.m_SelectOnUp
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711754766467611706, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_Navigation.m_SelectOnDown
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711754766467611706, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1244,8 +1251,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1872023531849115358, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

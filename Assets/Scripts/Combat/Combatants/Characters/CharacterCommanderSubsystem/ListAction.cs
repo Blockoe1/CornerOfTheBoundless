@@ -21,6 +21,9 @@ namespace COTB.Combat.Characters
         public override string Name => actionName;
         public override string Description => actionDescription;
         public override Sprite Icon => actionIcon;
+        public override CommandTags Tags => actionTags;
+        // Sub-Menus can never be disabled, only locked for simplicity.
+        protected override bool IsDisabled => false;
         #endregion
     }
 }

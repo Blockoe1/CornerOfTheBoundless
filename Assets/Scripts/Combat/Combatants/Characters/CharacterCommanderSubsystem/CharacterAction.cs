@@ -13,11 +13,52 @@ namespace COTB.Combat.Characters
     [System.Serializable]
     public abstract class CharacterAction
     {
+        [SerializeField, HideInInspector] private CharacterCommander commander;
+
+        private bool isCheckingState;
+
         #region Properties
         public abstract string Name { get; }
         public abstract string Description { get; }
         public abstract Sprite Icon { get; }
-        //public abstract ActionState State { get; }
+        public abstract CommandTags Tags { get; }
+
+        public virtual ActionState State
+        {
+            get
+            {
+                // Safeguard in case State is checked within an existing state check, because LockPredicates check
+                // the action.
+                if (isCheckingState) { return ActionState.Enabled; }
+
+                isCheckingState = true;
+                ActionState returnValue;
+                if (IsDisabled)
+                {
+                    returnValue = ActionState.Disabled;
+                }
+                else if (IsLocked)
+                {
+                    returnValue = ActionState.Locked;
+                }
+                else
+                {
+                    returnValue = ActionState.Enabled;
+                }
+                isCheckingState = false;
+                return returnValue;
+            }
+        }
+        protected abstract bool IsDisabled { get; }
+        protected bool IsLocked
+        {
+            get
+            {
+                return commander != null && commander.CheckLocked(this);
+            }
+        }
+
+        protected CharacterCommander Commander => commander;
         #endregion
 
         /// <summary>
@@ -25,6 +66,15 @@ namespace COTB.Combat.Characters
         /// </summary>
         /// <param name="ownedCommander"></param>
         internal virtual void Reset(CharacterCommander ownedCommander) { }
+
+        /// <summary>
+        /// Stores a referenec to the CharacterCommander referencing this action.
+        /// </summary>
+        /// <param name="ownedCommander">The CharacterCommander this action belongs to.</param>
+        internal virtual void OnValidate(CharacterCommander ownedCommander)
+        {
+            commander = ownedCommander;
+        }
 
         /// <summary>
         /// Has the combatant this action belongs to perform this action.

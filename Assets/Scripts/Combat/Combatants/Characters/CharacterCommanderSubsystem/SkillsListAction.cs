@@ -12,6 +12,13 @@ namespace COTB.Combat.Characters
 {
     public class SkillsListAction : ListAction
     {
-
+        #region Component References
+        [Header("Components")]
+        [SerializeReference, ReadOnly] private CharacterEntity character;
+        internal override void Reset(CharacterCommander ownedCommander)
+        {
+            character = ownedCommander.GetComponent<CharacterEntity>();
+        }
+        #endregion
     }
 }

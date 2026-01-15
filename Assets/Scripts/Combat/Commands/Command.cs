@@ -26,6 +26,7 @@ namespace COTB.Combat
         public string Name => commandName;
         public string Description => commandDescription;
         public Sprite Icon => icon;
+        public CommandTags Tags => tags;
 
         #endregion
 
@@ -43,6 +44,16 @@ namespace COTB.Combat
                 component.ExecuteComponent(targets, actor);
                 yield return null;
             }
+        }
+
+        /// <summary>
+        /// Checks if this command is valid to use given the current state of combat.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool CheckValid()
+        {
+            // Return true as a placeholder.
+            return true;
         }
     }
 }

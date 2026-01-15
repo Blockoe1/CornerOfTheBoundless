@@ -23,11 +23,11 @@ namespace COTB.Combat.UI.CharacterMenu
 
         [SerializeField] private UnityEvent<CharacterCommander> OnCharacterSelected;
 
-        private CharacterCommanderUI[] characters;
+        private CharacterCommander[] characters;
 
         private InputAction toggleCharacterAction;
 
-        private CharacterCommanderUI selectedCharacter;
+        private CharacterCommander selectedCharacter;
         private int sCharIndex;
 
         #region Properties
@@ -41,7 +41,7 @@ namespace COTB.Combat.UI.CharacterMenu
             }
         }
 
-        private CharacterCommanderUI SelectedCharacter
+        private CharacterCommander SelectedCharacter
         {
             get
             {
@@ -79,7 +79,7 @@ namespace COTB.Combat.UI.CharacterMenu
             toggleCharacterAction = InputSystem.actions.FindAction(TOGGLE_CHARACTER_ACTION_NAME);
 
             // Find all the characters in the encounter.
-            characters = FindObjectsByType<CharacterCommanderUI>(FindObjectsSortMode.InstanceID);
+            characters = FindObjectsByType<CharacterCommander>(FindObjectsSortMode.InstanceID);
         }
 
         /// <summary>
@@ -158,9 +158,9 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Causes the currently selected character to perform some combat action.
         /// </summary>
         /// <param name="action">The action to perform.</param>
-        public void PerformActionOnSelectedCharacter(CombatActionData action)
-        {
-            SelectedCharacter.PerformAction(action);
-        }
+        //public void PerformActionOnSelectedCharacter(CombatActionData action)
+        //{
+        //    SelectedCharacter.PerformAction(action);
+        //}
     }
 }
