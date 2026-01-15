@@ -13,7 +13,7 @@ using UnityEngine;
 namespace COTB.Combat
 {
     [CreateAssetMenu(fileName = "Command", menuName = "ScriptableObjects/Combat/Command")]
-    public class Command : ScriptableObject
+    public class Command : ScriptableObject, IButtonReadable
     {
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;
@@ -48,22 +48,32 @@ namespace COTB.Combat
         }
 
         /// <summary>
-        /// Checks if this command is valid to use given the current state of combat.
+        /// Checks if this command is valid to be used based on the current state
+        /// of combat.
         /// </summary>
         /// <returns></returns>
-        public virtual bool CheckValid()
+        public bool GetDisabled()
         {
-            // Return true as a placeholder.
-            return true;
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
         /// Gets a CharacterAction wrapping this command.
         /// </summary>
         /// <returns></returns>
-        public virtual CharacterAction GetCharacterAction(CharacterCommander linkedCommander)
+        public virtual CharacterAction GetCharacterAction()
         {
-            return new CommandAction(this, linkedCommander);
+            return new CommandAction(this);
         }
+
+        #region Button Interface
+        public string GetName() { return commandName; }
+
+        public string GetDescription() { return commandDescription; }
+
+        public Sprite GetIcon() { return icon; }
+
+        public CommandTags GetTags() { return tags; }
+        #endregion
     }
 }

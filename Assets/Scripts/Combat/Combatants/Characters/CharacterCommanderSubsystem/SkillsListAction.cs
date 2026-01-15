@@ -24,10 +24,6 @@ namespace COTB.Combat.Characters
         }
         #endregion
 
-        public SkillsListAction(CharacterCommander commander) : base(commander)
-        {
-        }
-
         #region Properties
         public override CharacterAction[] SubActions
         {
@@ -38,12 +34,17 @@ namespace COTB.Combat.Characters
                     subActions = new CharacterAction[character.Skills.Count];
                     for(int i = 0; i < subActions.Length; i++)
                     {
-                        subActions[i] = character.Skills[i].GetCharacterAction(Commander);
+                        subActions[i] = character.Skills[i].GetCharacterAction();
                     }
                 }
                 return subActions;
             }
         }
         #endregion
+
+        /// <summary>
+        /// ListActions cannot be disabled.
+        /// </summary>
+        public override bool GetDisabled() { return false; }
     }
 }

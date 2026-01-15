@@ -18,45 +18,34 @@ namespace COTB.Combat.Characters
         public Command Command => command;
         #endregion
 
-        public CommandAction(Command command, CharacterCommander commander) : base(commander)
+        public CommandAction(Command command)
         {
             this.command = command;
         }
 
-        #region API
-        public override void PerformAction(int index)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override string GetNameRelative(int index)
+        #region Button Getters
+        public override string GetName()
         {
             return command == null ? "" : command.Name;
         }
 
-        public override string GetDescriptionRelative(int index)
+        public override string GetDescription()
         {
             return command == null ? "" : command.Description;
         }
 
-        public override Sprite GetIconRelative(int index)
+        public override bool GetDisabled()
         {
-            return command == null ? null : command.Icon;
+            return command == null ? true : command.GetDisabled();
         }
 
-        public override CommandTags GetTagsRelative(int index)
+        public override CommandTags GetTags()
         {
             return command == null ? CommandTags.None : command.Tags;
         }
-
-        protected override bool IsDisabledRelative(int index)
+        public override Sprite GetIcon()
         {
-            return command == null ? true : !command.CheckValid();
-        }
-
-        protected override bool IsLockedRelative(int index)
-        {
-            throw new System.NotImplementedException();
+            return command == null ? null : command.Icon;
         }
         #endregion
     }
