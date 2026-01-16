@@ -2,7 +2,7 @@
 // File Name : Command.cs
 // Author : Eli Koederitz
 // Creation Date : 12/29/2025
-// Last Modified : 12/29/2025
+// Last Modified : 1/15/2026
 //
 // Brief Description : Data structure containing information about a given command that a combatant can perform.
 *****************************************************************************/
@@ -18,7 +18,7 @@ namespace COTB.Combat
         [SerializeField] private string commandName;
         [SerializeField, TextArea] private string commandDescription;
         [SerializeField] private Sprite icon;
-        [SerializeField] private CommandTags tags;
+        [SerializeField] private ActionTags tags;
 
         [SerializeReference, ClassDropdown(typeof(CommandComponent))] private CommandComponent[] commandComponents;
         [SerializeReference, ClassDropdown(typeof(CommandModifier))] private CommandModifier[] commandModifiers;
@@ -27,7 +27,7 @@ namespace COTB.Combat
         public string Name => commandName;
         public string Description => commandDescription;
         public Sprite Icon => icon;
-        public CommandTags Tags => tags;
+        public ActionTags Tags => tags;
 
         #endregion
 
@@ -57,15 +57,6 @@ namespace COTB.Combat
             throw new System.NotImplementedException();
         }
 
-        /// <summary>
-        /// Gets a CharacterAction wrapping this command.
-        /// </summary>
-        /// <returns></returns>
-        public virtual CharacterAction GetCharacterAction()
-        {
-            return new CommandAction(this);
-        }
-
         #region Button Interface
         public string GetName() { return commandName; }
 
@@ -73,7 +64,7 @@ namespace COTB.Combat
 
         public Sprite GetIcon() { return icon; }
 
-        public CommandTags GetTags() { return tags; }
+        public ActionTags GetTags() { return tags; }
         #endregion
     }
 }

@@ -148,8 +148,15 @@ MonoBehaviour:
   nameText: {fileID: 5040479821801188057}
   descriptionText: {fileID: 1080270112597818185}
   icon: {fileID: 3707776780320214751}
-  detector: {fileID: 4794100260467441884}
-  linkedButton: {fileID: 5483559248086448513}
+  tags: 0
+  actionMenu: {fileID: 0}
+  OnEnabledPress:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisabledPress:
+    m_PersistentCalls:
+      m_Calls: []
+  unityButton: {fileID: 5483559248086448513}
 --- !u!222 &4019947583369626438
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -232,9 +239,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: COTB.Combat.UI.CharacterControls.CombatButton,
-          CombatUI
+      - m_Target: {fileID: 5035719995800309494}
+        m_TargetAssemblyTypeName: COTB.Combat.UI.CharacterMenu.CharacterButton, CombatUI
         m_MethodName: OnButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -257,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e6014a5eb8ae749a410508e3bb3229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Core::COTB.UI.ScrollSelectDetector
-  m_searchForScrollController: 0
+  m_searchForScrollController: 1
 --- !u!1 &6147269449108773469
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ using UnityEngine;
 
 namespace COTB.Combat
 {
-    [System.Serializable]
     public class Attack : CommandComponent
     {
         [SerializeField] private float attackMultiplier;

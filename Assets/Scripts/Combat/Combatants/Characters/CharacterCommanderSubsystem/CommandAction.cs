@@ -2,9 +2,10 @@
 // File Name : CommandAction.cs
 // Author : Eli Koederitz
 // Creation Date : 1/12/2026
-// Last Modified : 1/12/2026
+// Last Modified : 1/15/2026
 //
-// Brief Description : Character action that represents using a singular command.
+// Brief Description : Wrapper class allowing a singular command to be selected on the CharacterCommander
+// class dropdown.
 *****************************************************************************/
 using UnityEngine;
 
@@ -39,9 +40,9 @@ namespace COTB.Combat.Characters
             return command == null ? true : command.GetDisabled();
         }
 
-        public override CommandTags GetTags()
+        public override ActionTags GetTags()
         {
-            return command == null ? CommandTags.None : command.Tags;
+            return command == null ? ActionTags.None : command.Tags;
         }
         public override Sprite GetIcon()
         {

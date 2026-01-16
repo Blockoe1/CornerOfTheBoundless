@@ -14,24 +14,6 @@ namespace COTB.Combat.UI.CharacterMenu
 {
     public class CombatSubMenu : SubMenu
     {
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] private ScrollWithSelected scrollController;
-
-        /// <summary>
-        /// Get components on reset.
-        /// </summary>
-        [ContextMenu("Get Component References")]
-        private void Reset()
-        {
-            scrollController = GetComponent<ScrollWithSelected>();
-        }
-        #endregion
-
-        #region Properties
-        public ScrollWithSelected ScrollController => scrollController;
-        #endregion
-
         /// <summary>
         /// Sets up this menu after buttons are created.
         /// </summary>
@@ -41,9 +23,9 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="menuName">The name of the menu (for hierarchy organization).</param>
         public void Initialize(Button initialButton, Button parentButton, int numButtons, string menuName)
         {
-            ScaleContent(numButtons);
             this.initialButton = initialButton;
             this.parentButton = parentButton;
+            ScaleContent(numButtons);
             gameObject.name = menuName;
         }
 

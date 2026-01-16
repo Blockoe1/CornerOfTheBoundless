@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6669768715424688238}
-  - component: {fileID: 8402376001227476610}
   - component: {fileID: 447211994163667741}
   - component: {fileID: 524598943638859458}
   m_Layer: 5
@@ -39,21 +38,6 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: 200}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &8402376001227476610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055084778077756174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d5efdffe997644ea1ea08db8606d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Core::COTB.UI.RootMenu
-  content: {fileID: 2071467979463752177}
-  initialButton: {fileID: 1711754766467611706}
-  canCloseSelf: 0
 --- !u!114 &447211994163667741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,8 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e2fe1886faa8147b9d86467b2c984d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.CharacterActionMenu
+  content: {fileID: 2071467979463752177}
+  initialButton: {fileID: 1711754766467611706}
+  canCloseSelf: 0
+  defaultSubMenuPrefab: {fileID: 7426055582346550112, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
+  defaultButtonPrefab: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
   scrollController: {fileID: 5725028096326536766}
-  rootMenu: {fileID: 8402376001227476610}
 --- !u!114 &524598943638859458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +119,38 @@ PrefabInstance:
     - target: {fileID: 2890542806316882432, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_Name
       value: LurkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: tags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: actionMenu
+      value: 
+      objectReference: {fileID: 447211994163667741}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 447211994163667741}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCommandSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: COTB.Combat.UI.CharacterMenu.CharacterActionMenu, CombatUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5040479821801188057, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_text
@@ -289,6 +309,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: tags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: actionMenu
+      value: 
+      objectReference: {fileID: 447211994163667741}
     - target: {fileID: 5040479821801188057, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_text
       value: Item
@@ -418,10 +446,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 2764892231723890201, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8402376001227476610}
     - target: {fileID: 3689063104058211595, guid: 376d12f2f2b717e4583bdc393ffb9bec, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -625,6 +649,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FleeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: tags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: actionMenu
+      value: 
+      objectReference: {fileID: 447211994163667741}
     - target: {fileID: 5040479821801188057, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_text
       value: Flee
@@ -777,6 +809,38 @@ PrefabInstance:
     - target: {fileID: 2890542806316882432, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_Name
       value: AttackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: tags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: actionMenu
+      value: 
+      objectReference: {fileID: 447211994163667741}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 447211994163667741}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCommandSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: COTB.Combat.UI.CharacterMenu.CharacterActionMenu, CombatUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035719995800309494, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
+      propertyPath: OnEnabledPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5040479821801188057, guid: 3104277d50644ae4aa1b6e116af0f8b4, type: 3}
       propertyPath: m_text

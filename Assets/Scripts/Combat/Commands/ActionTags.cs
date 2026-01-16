@@ -12,7 +12,7 @@ using System;
 namespace COTB.Combat
 {
     [Flags]
-    public enum CommandTags
+    public enum ActionTags
     {
         None = 0,
         Attack = 1 << 0,

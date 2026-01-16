@@ -18,7 +18,7 @@ namespace COTB.Combat
         string GetName();
         string GetDescription();
         Sprite GetIcon();
-        CommandTags GetTags();
+        ActionTags GetTags();
         bool GetDisabled();
     }
 }

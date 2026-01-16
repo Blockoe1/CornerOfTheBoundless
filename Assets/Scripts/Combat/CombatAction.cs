@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace COTB.Combat
 {
-    public struct CombatActionData
+    public struct CombatAction
     {
         private readonly Command toUse;
         private readonly CombatEntity[] targets;
@@ -20,7 +20,7 @@ namespace COTB.Combat
         public CombatEntity[] Targets => targets;
         #endregion
 
-        public CombatActionData(Command toUse, CombatEntity[] targets)
+        public CombatAction(Command toUse, CombatEntity[] targets)
         {
             this.toUse = toUse;
             this.targets = targets;

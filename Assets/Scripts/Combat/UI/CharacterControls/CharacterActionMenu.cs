@@ -14,41 +14,34 @@ using UnityEngine;
 
 namespace COTB.Combat.UI.CharacterMenu
 {
-    [RequireComponent(typeof(RootMenu))]
-    public class CharacterActionMenu : MonoBehaviour
+    public class CharacterActionMenu : RootMenu
     {
+        [SerializeField] private CombatSubMenu defaultSubMenuPrefab;
+        [SerializeField] private CharacterButton defaultButtonPrefab;
         [SerializeField] private ScrollWithSelected scrollController;
 
         private readonly Dictionary<CharacterCommander, CharacterMenuContext> characterMenus = new();
 
-        private event Action<CharacterCommander> OnMenuRefreshed;
+        internal event Action<CharacterCommander> OnMenuRefreshed;
 
-        private CharacterCommander recentCharacter;
-
-        #region Component References
-        [Header("Components")]
-        [SerializeReference, ReadOnly] private RootMenu rootMenu;
-
-        /// <summary>
-        /// Get components on reset.
-        /// </summary>
-        [ContextMenu("Get Component References")]
-        private void Reset()
-        {
-            rootMenu = GetComponent<RootMenu>();
-        }
-        #endregion
+        private CharacterCommander loadedCharacter;
 
         #region Properties
-        public Transform Content => rootMenu.Content;
         public ScrollWithSelected ScrollController => scrollController;
-        public RootMenu RootMenu => rootMenu;
+        public CharacterCommander LoadedCharacter => loadedCharacter;
         #endregion
 
         #region Nested
-        private class CharacterMenuContext
+        private readonly struct CharacterMenuContext
         {
-            private CharacterButton[] menuButtons;
+            internal readonly CharacterButton[] menuButtons;
+            internal readonly ICommanderReadable[] buttonOverrides;
+
+            internal CharacterMenuContext(CharacterButton[] menuButtons, ICommanderReadable[] buttonOverrides)
+            {
+                this.menuButtons = menuButtons;
+                this.buttonOverrides = buttonOverrides;
+            }
         }
         #endregion
 
@@ -61,12 +54,50 @@ namespace COTB.Combat.UI.CharacterMenu
             if (!characterMenus.ContainsKey(character))
             {
                 // If the menu for this character hasn't been created, create it.
+                characterMenus.Add(character, CreateCharacterMenu(character));
             }
 
-            // Load the menu context associated with this character.
+            Load();
+            LoadButtons(characterMenus[character]);
 
-            recentCharacter = character;
+            loadedCharacter = character;
             Refresh(character);
+        }
+
+        /// <summary>
+        /// Unloads the currently loaded character's menu.
+        /// </summary>
+        public override void Unload()
+        {
+            // Do nothing if an unload is attempted and there is no character loaded.
+            if (loadedCharacter != null && characterMenus.ContainsKey(loadedCharacter))
+            {
+                CharacterMenuContext context = characterMenus[loadedCharacter];
+                for (int i = 0; i < context.menuButtons.Length; i++)
+                {
+                    context.menuButtons[i].gameObject.SetActive(false);
+                }
+            }
+
+            base.Unload();
+        }
+
+        /// <summary>
+        /// Updates the base CharacterActionMenu based on a given CharacterMenuContext.
+        /// </summary>
+        /// <param name="context">The context to load.</param>
+        private void LoadButtons(CharacterMenuContext context)
+        {
+            for (int i = 0; i < context.menuButtons.Length; i++)
+            {
+                context.menuButtons[i].gameObject.SetActive(true);
+                // Orders the buttons in the menu based on their order in the array.
+                context.menuButtons[i].transform.SetSiblingIndex(i);
+                if (context.buttonOverrides[i] != null)
+                {
+                    context.menuButtons[i].ReadableData = context.buttonOverrides[i];
+                }
+            }
         }
 
         /// <summary>
@@ -74,7 +105,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         public void Refresh()
         {
-            Refresh(recentCharacter);
+            Refresh(loadedCharacter);
         }
         /// <summary>
         /// Refreshes the action menu to ensure all buttons are up to date.
@@ -83,6 +114,48 @@ namespace COTB.Combat.UI.CharacterMenu
         private void Refresh(CharacterCommander character)
         {
             OnMenuRefreshed?.Invoke(character);
+        }
+
+        /// <summary>
+        /// Creates a new MenuContext for the given character.
+        /// </summary>
+        private CharacterMenuContext CreateCharacterMenu(CharacterCommander character)
+        {
+            List<CharacterButton> buttons = new List<CharacterButton>();
+            List<ICommanderReadable> overrides = new List<ICommanderReadable>();
+
+            // Loop through each action and create a corresponding button and override for it.
+            foreach (CharacterAction action in character.Actions)
+            {
+                ActionDrawer drawer = ActionDrawer.GetActionDrawer(action);
+                if (drawer != null)
+                {
+                    buttons.Add(drawer.Draw(action, Content, defaultSubMenuPrefab, defaultButtonPrefab, this));
+                    overrides.Add(drawer.GetOverride(action));
+                }
+            }
+
+            List<CharacterButton> returnButtons = new List<CharacterButton>();
+            List<ICommanderReadable> returnOverrides = new List<ICommanderReadable>();
+            // Convert the button lists to arrays, ignoring null buttons.
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (buttons[i] != null)
+                {
+                    returnButtons.Add(buttons[i]);
+                    returnOverrides.Add(overrides[i]);
+                }
+            }
+            CharacterMenuContext context = new CharacterMenuContext(returnButtons.ToArray(), returnOverrides.ToArray());
+            return context;
+        }
+
+        public void OnCommandSelected(Command selectedCommand)
+        {
+            // Ignore null commands.
+            if (selectedCommand == null) { return; }
+            // Implement stuff here.
+            loadedCharacter.PerformCommand(new CombatAction(selectedCommand, null));
         }
     }
 }

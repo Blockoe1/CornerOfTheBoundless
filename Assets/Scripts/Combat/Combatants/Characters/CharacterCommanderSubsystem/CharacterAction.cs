@@ -2,7 +2,7 @@
 // File Name : CharacterAction.cs
 // Author : Eli Koederitz
 // Creation Date : 1/12/2026
-// Last Modified : 1/12/2026
+// Last Modified : 1/15/2026
 //
 // Brief Description : Abstract base class for a type of action that a character can perform in combat.
 *****************************************************************************/
@@ -27,7 +27,7 @@ namespace COTB.Combat.Characters
         {
             return null;
         }
-        public abstract CommandTags GetTags();
+        public abstract ActionTags GetTags();
         #endregion
     }
 }
