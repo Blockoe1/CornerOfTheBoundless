@@ -11,11 +11,34 @@ using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
 namespace COTB.Combat.UI.CharacterMenu
 {
     public abstract class ActionDrawer
     {
+        private CombatSubMenu subMenuPrefab;
+        private CharacterButton buttonPrefab;
+        private CharacterActionMenu actionMenu;
+
+        #region Properties
+        protected virtual CombatSubMenu SubMenuPrefab => subMenuPrefab;
+        protected virtual CharacterButton ButtonPrefab => buttonPrefab;
+        protected virtual CharacterActionMenu ActionMenu => actionMenu;
+        #endregion
+
+        /// <summary>
+        /// Sets the prefabs that this drawer uses.
+        /// </summary>
+        /// <param name="subMenuPrefab"></param>
+        /// <param name="buttonPrefab"></param>
+        public void Initialize(CombatSubMenu subMenuPrefab, CharacterButton buttonPrefab, CharacterActionMenu actionMenu)
+        {
+            this.buttonPrefab = buttonPrefab;
+            this.subMenuPrefab = subMenuPrefab;
+            this.actionMenu = actionMenu;
+        }
+
         /// <summary>
         /// Draws a given ICommanderReadable on the CharacterActionMenu by spawning button prefabs.
         /// </summary>
@@ -25,8 +48,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="buttonPrefab">The prefab to use for creating buttons.</param>
         /// <param name="actionMenu">The menu that this drawer is drawing on.</param>
         /// <returns>The created button on the root menu.</returns>
-        public abstract CharacterButton Draw(ICommanderReadable drawTarget, Transform content, 
-            CombatSubMenu subMenuPrefab, CharacterButton buttonPrefab, CharacterActionMenu actionMenu);
+        public abstract CharacterButton Draw(ICommanderReadable drawTarget, Transform content);
 
         /// <summary>
         /// By default, ActionDrawers don't give a specific override.
@@ -39,17 +61,16 @@ namespace COTB.Combat.UI.CharacterMenu
         }
 
         /// <summary>
-        /// Creates a button instance loaded with the given buttonData.
+        /// Spawns a new button instance from this drawer's button prefab.
         /// </summary>
-        /// <param name="buttonData">The button data to construct the button from.</param>
-        /// <param name="actionMenu">The root ActionMenu this button belongs to.</param>
-        /// <param name="buttonPrefab">The prefab to use when spawning the button.</param>
-        /// <returns>The created button.</returns>
-        protected static CharacterButton CreateButton(ICommanderReadable buttonData, CharacterActionMenu actionMenu, 
-            CharacterButton buttonPrefab)
+        /// <param name="drawTarget">The command to draw a button for.</param>
+        /// <param name="content">The transform that the spawned button should be a child of.</param>
+        /// <param name="actionMenu">The action menu this button belongs to.</param>
+        protected CharacterButton SpawnButton(ICommanderReadable drawTarget, Transform content)
         {
-            CharacterButton createdButton = GameObject.Instantiate(buttonPrefab, actionMenu.Content);
-            createdButton.Initialize(buttonData, actionMenu);
+            // Create a Drawer for the button data we're creating a button for.
+            CharacterButton createdButton = GameObject.Instantiate(ButtonPrefab, content);
+            createdButton.Initialize(drawTarget, ActionMenu);
             return createdButton;
         }
 

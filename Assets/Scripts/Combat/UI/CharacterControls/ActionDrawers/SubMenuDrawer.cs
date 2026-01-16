@@ -20,25 +20,21 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         /// <param name="drawTarget">The ICommanderReadable that this drawer is creating buttons for.</param>
         /// <param name="content">The GemaObject holding the content of the CharacterActionMenu</param>
-        /// <param name="subMenuPrefab">The prefab to use for creating a Sub-Menu</param>
-        /// <param name="buttonPrefab">The prefab to use for creating buttons.</param>
-        /// <param name="actionMenu">The menu that this drawer is drawing on.</param>
         /// <returns>The created button on the root menu that opens the sub menu.</returns>
-        public override CharacterButton Draw(ICommanderReadable drawTarget, Transform content, 
-            CombatSubMenu subMenuPrefab, CharacterButton buttonPrefab, CharacterActionMenu actionMenu)
+        public override CharacterButton Draw(ICommanderReadable drawTarget, Transform content)
         {
             ListAction listAction = drawTarget as ListAction;
 
             // Create the button that opens the SubMenu
-            CharacterButton subMenuButton = CreateButton(drawTarget, actionMenu, buttonPrefab);
+            CharacterButton subMenuButton = SpawnButton(drawTarget, ActionMenu.Content);
 
             // Create the sub-menu
-            CombatSubMenu subMenu = GameObject.Instantiate(subMenuPrefab, actionMenu.transform);
-            InitializeSubMenu(buttonPrefab, subMenu, actionMenu, listAction, subMenuButton.UnityButton);
+            CombatSubMenu subMenu = GameObject.Instantiate(SubMenuPrefab, ActionMenu.transform);
+            SetupSubMenu(subMenu, listAction, subMenuButton.UnityButton);
             subMenu.Unload();
 
             // Hookup so the button opens the sub menu.
-            subMenuButton.AddEnabledListener((unused) => actionMenu.OpenSubMenu(subMenu));
+            subMenuButton.AddEnabledListener((unused) => ActionMenu.OpenSubMenu(subMenu));
 
             return subMenuButton;
         }
@@ -48,14 +44,11 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <summary>
         /// Initializes an already created sub-menu.
         /// </summary>
-        /// <param name="buttonPrefab">The prefab to use for creating buttons.</param>
         /// <param name="subMenu"></param>
-        /// <param name="actionMenu">The menu that this drawer is drawing on.</param>
         /// <param name="listAction"></param>
         /// <param name="parentButton"></param>
         /// <returns>The created button on the root menu.</returns>
-        internal void InitializeSubMenu(CharacterButton buttonPrefab, CombatSubMenu subMenu, 
-            CharacterActionMenu actionMenu, ListAction listAction, Button parentButton)
+        internal void SetupSubMenu(CombatSubMenu subMenu, ListAction listAction, Button parentButton)
         {
             if (listAction.SubActions.Length == 0)
             {
@@ -64,32 +57,45 @@ namespace COTB.Combat.UI.CharacterMenu
             }
 
             // Purely for hierarchy organization
-            string menuName = $"{(actionMenu.LoadedCharacter == null ? "" : actionMenu.LoadedCharacter.name)}" +
+            string menuName = $"{(ActionMenu.LoadedCharacter == null ? "" : ActionMenu.LoadedCharacter.name)}" +
                 $"{listAction.GetName()}SubMenu";
+            subMenu.gameObject.name = menuName;
 
-            Button[] buttons = ConstructButtons(buttonPrefab, listAction.SubActions, actionMenu);
-            subMenu.Initialize(buttons[0], parentButton, buttons.Length, menuName);
+            Button[] buttons = CreateButtons(listAction.SubActions, subMenu.Content);
+            subMenu.Initialize(buttons[0], parentButton, buttons.Length);
         }
 
         /// <summary>
         /// Construct all the buttons within a given sub-menu.
         /// </summary>
-        /// <param name="buttonPrefab">The prefab to use for creating buttons.</param>
         /// <param name="buttonData">The button data array to construct the buttons from.</param>
-        /// <param name="actionMenu">The sub-menu that the buttons will belong to.</param>
+        /// <param name="content">The transform that the created buttons will be children of.</param>
         /// <returns></returns>
-        internal Button[] ConstructButtons(CharacterButton buttonPrefab, ICommanderReadable[] buttonData, 
-            CharacterActionMenu actionMenu)
+        internal Button[] CreateButtons(ICommanderReadable[] buttonData, Transform content)
         {
             Button[] createdButtons = new Button[buttonData.Length];
 
             for (int i = 0; i < buttonData.Length; i++)
             {
-                createdButtons[i] = CreateButton(buttonData[i], actionMenu, buttonPrefab).UnityButton;
+                createdButtons[i] = DrawChild(buttonData[i], content).UnityButton;
             }
             HookupButtonNavigation(createdButtons);
 
             return createdButtons;
+        }
+
+        /// <summary>
+        /// Draws a sub command of this list command.
+        /// </summary>
+        /// <param name="subCommand">The button data to construct the button from.</param>
+        /// <param name="content">The transform to spawn the button as a child of.</param>
+        /// <returns>The created button.</returns>
+        protected CharacterButton DrawChild(ICommanderReadable subCommand, Transform content)
+        {
+            // Create a drawer for the sub-command.
+            ActionDrawer drawer = GetActionDrawer(subCommand);
+            drawer.Initialize(SubMenuPrefab, ButtonPrefab, ActionMenu);
+            return drawer.Draw(subCommand, content);
         }
 
         /// <summary>

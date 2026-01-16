@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace COTB.Combat.UI.CharacterMenu
 {
-    [CustomActionDrawer(typeof(Characters.CommandAction))]
+    [CustomActionDrawer(typeof(CommandAction))]
     public class SingletonButtonDrawer : ActionDrawer
     {
         /// <summary>
@@ -20,12 +20,8 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         /// <param name="drawTarget">The action that this Drawer is creating a button for.</param>
         /// <param name="content">The parent GameObject of buttons to create for the root ActionMenu.</param>
-        /// <param name="subMenuPrefab">The prefab for creating a sub menu.</param>
-        /// <param name="buttonPrefab">The prefab for creating a button.</param>
-        /// <param name="actionMenu">The ActionMenu that is this drawer applies to.</param>
         /// <returns>The created button on the root ActionMenu.</returns>
-        public override CharacterButton Draw(ICommanderReadable drawTarget, Transform content, 
-            CombatSubMenu subMenuPrefab, CharacterButton buttonPrefab, CharacterActionMenu actionMenu)
+        public override CharacterButton Draw(ICommanderReadable drawTarget, Transform content)
         {
             // Find the button whose tags match the drawTargets.
             foreach(CharacterButton button in content.GetComponentsInChildren<CharacterButton>())

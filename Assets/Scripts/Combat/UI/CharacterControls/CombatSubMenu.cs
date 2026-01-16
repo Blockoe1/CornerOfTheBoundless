@@ -21,12 +21,11 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="parentButton">The parent button that opens this menu.</param>
         /// <param name="numButtons">The number of individual buttons in the menu.</param>
         /// <param name="menuName">The name of the menu (for hierarchy organization).</param>
-        public void Initialize(Button initialButton, Button parentButton, int numButtons, string menuName)
+        public void Initialize(Button initialButton, Button parentButton, int numButtons)
         {
             this.initialButton = initialButton;
             this.parentButton = parentButton;
             ScaleContent(numButtons);
-            gameObject.name = menuName;
         }
 
         /// <summary>

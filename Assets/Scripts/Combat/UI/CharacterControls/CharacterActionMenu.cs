@@ -130,7 +130,8 @@ namespace COTB.Combat.UI.CharacterMenu
                 ActionDrawer drawer = ActionDrawer.GetActionDrawer(action);
                 if (drawer != null)
                 {
-                    buttons.Add(drawer.Draw(action, Content, defaultSubMenuPrefab, defaultButtonPrefab, this));
+                    drawer.Initialize(defaultSubMenuPrefab, defaultButtonPrefab, this);
+                    buttons.Add(drawer.Draw(action, Content));
                     overrides.Add(drawer.GetOverride(action));
                 }
             }
