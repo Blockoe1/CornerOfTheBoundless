@@ -54,7 +54,7 @@ namespace COTB.UI
         public override void Unload()
         {
             base.Unload();
-            CloseAllMenus();
+            CloseAllSubMenus();
         }
 
         #region Sub-Menu Management
@@ -99,7 +99,7 @@ namespace COTB.UI
         /// <summary>
         /// Closes all currently opened sub menus in the menu hierarchy.
         /// </summary>
-        public void CloseAllMenus()
+        public void CloseAllSubMenus()
         {
             EventSystem.current.SetSelectedGameObject(null);
             foreach (SubMenu subMenu in menuHierarchy)

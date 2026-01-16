@@ -9,6 +9,7 @@
 using System.Collections.ObjectModel;
 using System;
 using UnityEngine;
+using COTB.Combat.Actions;
 
 namespace COTB.Combat
 {
@@ -18,10 +19,10 @@ namespace COTB.Combat
         [SerializeField] private string characterName;
         [SerializeField, Range(1, 99)] private byte level;
         [Header("Combat Settings")]
-        [SerializeField] private Command[] skills;
+        [SerializeField] private CombatAction[] skills;
 
         #region Properties
-        public ReadOnlyCollection<Command> UsableSkills
+        public ReadOnlyCollection<CombatAction> UsableSkills
         { 
             get
             {

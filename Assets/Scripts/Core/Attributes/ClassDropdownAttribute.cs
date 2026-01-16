@@ -15,10 +15,16 @@ namespace COTB
     public class ClassDropdownAttribute : PropertyAttribute
     {
         public Type BaseType { get; }
+        public bool RestrictAssemblies { get; }
 
-        public ClassDropdownAttribute(Type baseType)
+        public ClassDropdownAttribute(Type baseType) : this(baseType, true)
+        {
+        }
+
+        public ClassDropdownAttribute(Type baseType, bool restrictAssemblies)
         {
             BaseType = baseType;
+            RestrictAssemblies = restrictAssemblies;
         }
     }
 }
