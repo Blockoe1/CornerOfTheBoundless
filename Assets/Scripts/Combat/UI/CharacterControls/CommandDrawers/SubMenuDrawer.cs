@@ -31,7 +31,8 @@ namespace COTB.Combat.UI.CharacterMenu
             // Create the sub-menu
             CommandSubMenu subMenu = GameObject.Instantiate(SubMenuPrefab, CommandMenu.transform);
             SetupSubMenu(subMenu, listCommand, subMenuButton.UnityButton);
-            subMenu.Unload();
+            // Make sure the sub-menu is disabled.
+            subMenu.gameObject.SetActive(false);
 
             // Hookup so the button opens the sub menu.
             subMenuButton.AddEnabledListener((unused) => CommandMenu.OpenSubMenu(subMenu));

@@ -65,12 +65,13 @@ namespace COTB.Combat.UI.CharacterMenu
                 characterMenus.Add(character, CreateCharacterMenu(character));
             }
 
+            ToggleButtons(characterMenus[character], true);
+
             // Load the full menu if it isnt already loaded.
             if (!IsLoaded)
             {
                 Load();
             }
-            ToggleButtons(characterMenus[character], true);
             Refresh(character);
         }
 

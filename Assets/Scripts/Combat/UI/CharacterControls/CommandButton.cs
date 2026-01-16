@@ -113,8 +113,6 @@ namespace COTB.Combat.UI.CharacterMenu
         {
             if (readableData != null)
             {
-                Debug.Log("Loaded button data for button " + name);
-                //Debug.Log(readableData.GetName());
                 nameText.text = readableData.GetName();
                 descriptionText.text = readableData.GetDescription();
 
