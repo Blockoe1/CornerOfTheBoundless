@@ -140,49 +140,56 @@ namespace COTB.Editor
         /// <param name="property">The SerializedProperty the attribute is on.</param>
         private void Initialize(SerializedProperty property)
         {
-            Type baseType = (attribute as ClassDropdownAttribute)?.BaseType;
+            ClassDropdownAttribute dda = (attribute as ClassDropdownAttribute);
+            Type baseType = dda?.BaseType;
 
             // Create a temp list to add selection options to.
             List<string> tempSelections = new List<string>();
 
             selectionTypes = new List<Type>();
 
-            // Loop through all types in all assemblies (More generic impmenentation.  Not what I need).
-            //foreach(Assembly asmb in  AppDomain.CurrentDomain.GetAssemblies())
-            //{
-            //    foreach(Type type in asmb.GetTypes())
-            //    {
-            //        // Skip classes that aren't subclasses of the base class and abstract classes.
-            //        if (!type.IsSubclassOf(baseType) || type.IsAbstract)
-            //        {
-            //            continue;
-            //        }
-
-            //        // Store the type and the type's name for use in the dropdown.
-            //        selectionTypes.Add(type);
-            //        string displayName = type.Name;
-            //        tempSelections.Add(displayName);
-            //    }
-            //}
-
-            // Loop through all types in the combat assembly where the base class is stored.
-            foreach(Type type in Assembly.GetAssembly(baseType).GetTypes())
+            if (dda.RestrictAssemblies)
             {
-                if (!type.IsSubclassOf(baseType) || type.IsAbstract)
+                // If RestrictAssemblies is true, only search the assembly that the base
+                // type is in.
+                foreach (Type type in Assembly.GetAssembly(baseType).GetTypes())
                 {
-                    continue;
+                    if (!type.IsSubclassOf(baseType) || type.IsAbstract)
+                    {
+                        continue;
+                    }
+
+                    // Store the type and the type's name for use in the dropdown.
+                    selectionTypes.Add(type);
+                    string displayName = type.Name;
+
+                    // Attempt to put the type into a given group in the dropdown.
+                    if (Attribute.GetCustomAttribute(type, typeof(DropdownGroupAttribute)) is DropdownGroupAttribute dga)
+                    {
+                        displayName = dga.GroupName + "/" + displayName;
+                    }
+                    tempSelections.Add(displayName);
                 }
-
-                // Store the type and the type's name for use in the dropdown.
-                selectionTypes.Add(type);
-                string displayName = type.Name;
-
-                // Attempt to put the type into a given group in the dropdown.
-                if (Attribute.GetCustomAttribute(type, typeof(DropdownGroupAttribute)) is DropdownGroupAttribute dga)
+            }
+            else
+            {
+                // Loop through all types in all assemblies (More generic impmenentation).
+                foreach (Assembly asmb in AppDomain.CurrentDomain.GetAssemblies())
                 {
-                    displayName = dga.GroupName + "/" + displayName;
+                    foreach (Type type in asmb.GetTypes())
+                    {
+                        // Skip classes that aren't subclasses of the base class and abstract classes.
+                        if (!type.IsSubclassOf(baseType) || type.IsAbstract)
+                        {
+                            continue;
+                        }
+
+                        // Store the type and the type's name for use in the dropdown.
+                        selectionTypes.Add(type);
+                        string displayName = type.Name;
+                        tempSelections.Add(displayName);
+                    }
                 }
-                tempSelections.Add(displayName);
             }
 
             // Convert the temp list into a permanent array.

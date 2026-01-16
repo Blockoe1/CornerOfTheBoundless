@@ -8,6 +8,7 @@
 *****************************************************************************/
 using System.Collections.ObjectModel;
 using UnityEngine;
+using COTB.Combat.Actions;
 
 namespace COTB.Combat.Characters
 {
@@ -16,7 +17,7 @@ namespace COTB.Combat.Characters
         [SerializeField] private Character loadedCharacter;
 
         #region Properties
-        public ReadOnlyCollection<Command> Skills
+        public ReadOnlyCollection<CombatAction> Skills
         {
             get
             {

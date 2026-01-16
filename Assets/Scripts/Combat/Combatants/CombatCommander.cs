@@ -22,14 +22,20 @@ namespace COTB.Combat
         /// Get components on reset.
         /// </summary>
         [ContextMenu("Get Component References")]
-        protected virtual void Reset()
+        private void Reset()
         {
             actor = GetComponent<CombatActor>();
+            GetComponents();
         }
         #endregion
 
         #region Properties
         protected CombatActor Actor => actor;
         #endregion
+
+        /// <summary>
+        /// Called by reset to have the CharacterActions get any relevant character 
+        /// </summary>
+        protected virtual void GetComponents() { }
     }
 }

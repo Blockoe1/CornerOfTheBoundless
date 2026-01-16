@@ -53,6 +53,7 @@ namespace COTB.UI
         public override void Unload()
         {
             parentButton.Select();
+            isLoaded = false;
             ToggleMenu(false);
         }
     }
