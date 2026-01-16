@@ -51,14 +51,13 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="character"></param>
         public void LoadCharacterMenu(CharacterCommander character)
         {
-            // Attempting to load a null character closes the menu.
-            if (character == null)
-            {
-                Unload();
-                return;
-            }
+            // If another character was previously loaded, disable that character's menu.
+            UnloadCurrentCharacter();
 
             loadedCharacter = character;
+
+            // Prevent loading a null character.
+            if (character == null) { return; }
 
             if (!characterMenus.ContainsKey(character))
             {
@@ -71,7 +70,7 @@ namespace COTB.Combat.UI.CharacterMenu
             {
                 Load();
             }
-            LoadButtons(characterMenus[character]);
+            ToggleButtons(characterMenus[character], true);
             Refresh(character);
         }
 
@@ -79,17 +78,38 @@ namespace COTB.Combat.UI.CharacterMenu
         /// Updates the base CharacterActionMenu based on a given CharacterMenuContext.
         /// </summary>
         /// <param name="context">The context to load.</param>
-        private void LoadButtons(CharacterMenuContext context)
+        private void ToggleButtons(CharacterMenuContext context, bool enabled)
         {
             for (int i = 0; i < context.menuButtons.Length; i++)
             {
-                context.menuButtons[i].gameObject.SetActive(true);
-                // Orders the buttons in the menu based on their order in the array.
-                context.menuButtons[i].transform.SetSiblingIndex(i);
-                if (context.buttonOverrides[i] != null)
+                context.menuButtons[i].gameObject.SetActive(enabled);
+                if (enabled)
                 {
-                    context.menuButtons[i].ReadableData = context.buttonOverrides[i];
+                    // Orders the buttons in the menu based on their order in the array.
+                    context.menuButtons[i].transform.SetSiblingIndex(i);
+                    context.menuButtons[i].OnButtonEnabled();
+                    if (context.buttonOverrides[i] != null)
+                    {
+                        context.menuButtons[i].ReadableData = context.buttonOverrides[i];
+                    }
                 }
+                else
+                {
+                    context.menuButtons[i].OnButtonDisabled();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Unloads the current character's menu.
+        /// </summary>
+        private void UnloadCurrentCharacter()
+        {
+            // Do nothing if an unload is attempted and there is no character loaded.
+            if (loadedCharacter != null && characterMenus.ContainsKey(loadedCharacter))
+            {
+                CharacterMenuContext context = characterMenus[loadedCharacter];
+                ToggleButtons(context, false);
             }
         }
 
@@ -98,15 +118,7 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </summary>
         public override void Unload()
         {
-            // Do nothing if an unload is attempted and there is no character loaded.
-            if (loadedCharacter != null && characterMenus.ContainsKey(loadedCharacter))
-            {
-                CharacterMenuContext context = characterMenus[loadedCharacter];
-                for (int i = 0; i < context.menuButtons.Length; i++)
-                {
-                    context.menuButtons[i].gameObject.SetActive(false);
-                }
-            }
+            UnloadCurrentCharacter();
 
             base.Unload();
         }

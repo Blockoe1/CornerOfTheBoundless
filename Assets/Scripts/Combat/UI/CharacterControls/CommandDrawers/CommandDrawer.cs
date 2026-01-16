@@ -66,6 +66,12 @@ namespace COTB.Combat.UI.CharacterMenu
         {
             // Create a Drawer for the button data we're creating a button for.
             CommandButton createdButton = GameObject.Instantiate(ButtonPrefab, content);
+
+            // Hierarchy organization
+            string buttonName = $"{(CommandMenu.LoadedCharacter == null ? "" : CommandMenu.LoadedCharacter.name)}" +
+                $"{drawTarget.GetName()}Button";
+            createdButton.name = buttonName;
+
             createdButton.Initialize(drawTarget, CommandMenu);
             return createdButton;
         }

@@ -74,10 +74,11 @@ namespace COTB.Combat.UI.CharacterMenu
         /// </remarks>
         /// <param name="buttonData">The button data that this button is based on.</param>
         /// <param name="commandMenu">The action menu that this button belongs to.</param>
-        public void Initialize(ICommandReadable buttonData, CharacterCommandMenu commandMenu)
+        internal void Initialize(ICommandReadable buttonData, CharacterCommandMenu commandMenu)
         {
             ReadableData = buttonData;
             this.commandMenu = commandMenu;
+            Debug.Log("Initialized button " + name);
             // If this game object starts enabled, setup event references since the game object is already enabled.
             if (gameObject.activeSelf)
             {
@@ -90,14 +91,14 @@ namespace COTB.Combat.UI.CharacterMenu
         /// When this button is enabled, it should listen for action menu refreshes so that
         /// it's information is up to date.
         /// </summary>
-        private void OnEnable()
+        internal void OnButtonEnabled()
         {
             if (commandMenu != null)
             {
                 commandMenu.OnMenuRefreshed += LoadButtonData;
             }
         }
-        private void OnDisable()
+        internal void OnButtonDisabled()
         {
             if ( commandMenu != null)
             {
@@ -112,6 +113,7 @@ namespace COTB.Combat.UI.CharacterMenu
         {
             if (readableData != null)
             {
+                Debug.Log("Loaded button data for button " + name);
                 //Debug.Log(readableData.GetName());
                 nameText.text = readableData.GetName();
                 descriptionText.text = readableData.GetDescription();
@@ -186,6 +188,10 @@ namespace COTB.Combat.UI.CharacterMenu
         private void OnDestroy()
         {
             OnEnabledPress.RemoveAllListeners();
+            if (commandMenu != null)
+            {
+                commandMenu.OnMenuRefreshed -= LoadButtonData;
+            }
         }
         #endregion
     }
