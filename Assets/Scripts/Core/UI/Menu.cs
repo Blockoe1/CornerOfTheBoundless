@@ -23,17 +23,17 @@ namespace COTB.UI
         public event Action OnMenuLoaded;
         public event Action OnMenuUnloaded;
 
-        //protected bool isEnabled;
+        protected bool isLoaded;
         #endregion
 
         #region Properties
-        //public bool IsEnabled
-        //{
-        //    get
-        //    {
-        //        return isEnabled;
-        //    }
-        //}
+        public bool IsLoaded
+        {
+            get
+            {
+                return isLoaded;
+            }
+        }
         public Transform Content => content;
         #endregion
 
@@ -59,7 +59,6 @@ namespace COTB.UI
         /// <param name="enabled"> Whether to enable or disable this menu.</param>
         public virtual void ToggleMenu(bool enabled)
         {
-            //isEnabled = enabled;
             gameObject.SetActive(enabled);
         }
 
@@ -69,6 +68,7 @@ namespace COTB.UI
         public virtual void Load()
         {
             ToggleMenu(true);
+            isLoaded = true;
             OnMenuLoaded?.Invoke();
             // Need to select the new button after the menu has been loaded because disabled game objects dont recieve selection messages.
             if (initialButton != null)
@@ -87,6 +87,7 @@ namespace COTB.UI
             //ExecuteEvents.Execute<IDeselectHandler>(EventSystem.current.currentSelectedGameObject, null, (x, y) => x.OnDeselect(new BaseEventData(EventSystem.current)));
             EventSystem.current.SetSelectedGameObject(null);
             OnMenuUnloaded?.Invoke();
+            isLoaded = false;
             ToggleMenu(false);
         }
 

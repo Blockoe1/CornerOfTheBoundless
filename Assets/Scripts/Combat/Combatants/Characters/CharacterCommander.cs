@@ -11,22 +11,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.Events;
+using COTB.Combat.Actions;
 
 namespace COTB.Combat.Characters
 {
     public class CharacterCommander : CombatCommander
     {
-        [Header("Character Actions")]
+        [Header("Character Commands")]
         //[SerializeField, Tooltip("")] private CommandTags lockedTags;
-        [SerializeReference, ClassDropdown(typeof(CharacterAction))] private CharacterAction[] actions;
+        [SerializeReference, ClassDropdown(typeof(CharacterCommand))] private CharacterCommand[] commands;
         [Header("Selection Events")]
         [SerializeField] private UnityEvent OnSelectEvent;
         [SerializeField] private UnityEvent OnDeselectEvent;
 
-        private readonly List<Predicate<ICommanderReadable>> lockPredicates = new();
+        private readonly List<Predicate<ICommandReadable>> lockPredicates = new();
 
         #region Properties
-        public ReadOnlyCollection<CharacterAction> Actions => Array.AsReadOnly(actions);
+        public ReadOnlyCollection<CharacterCommand> Commands => Array.AsReadOnly(commands);
         #endregion
 
         /// <summary>
@@ -35,23 +36,23 @@ namespace COTB.Combat.Characters
         [ContextMenu("Get Component References")]
         protected override void GetComponents()
         {
-            foreach(var action in actions)
+            foreach(var command in commands)
             {
-                action.GetComponents(this);
+                command.GetComponents(this);
             }
         }
 
         /// <summary>
         /// Checks if a specific CharacterAction is locked for this character.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="command"></param>
         /// <returns>True if this action is locked for this character.</returns>
-        public bool CheckLocked(ICommanderReadable action)
+        public bool CheckLocked(ICommandReadable command)
         {
             bool isLocked = false;
-            foreach (Predicate<ICommanderReadable> predicate in lockPredicates)
+            foreach (Predicate<ICommandReadable> predicate in lockPredicates)
             {
-                isLocked |= predicate(action);
+                isLocked |= predicate(command);
             }
             return isLocked;
         }
@@ -77,7 +78,7 @@ namespace COTB.Combat.Characters
         /// Just reroutes to the attached CombatActor on this GO.
         /// </remarks>
         /// <param name="action">The action for the character to perform.</param>
-        public void PerformCommand(CombatAction action)
+        public void PerformAction(CombatActionContext action)
         {
             Actor.PerformAction(action);
         }

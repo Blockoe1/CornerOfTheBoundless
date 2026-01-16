@@ -37,7 +37,7 @@ namespace COTB.Combat.UI.CharacterMenu
             set
             {
                 sCharIndex = value;
-                LoopIndex(characters, ref sCharIndex);
+                CollectionHelpers.LoopIndex(characters, ref sCharIndex);
             }
         }
 
@@ -56,15 +56,11 @@ namespace COTB.Combat.UI.CharacterMenu
                 }
 
                 selectedCharacter = value;
+                OnCharacterSelected?.Invoke(selectedCharacter);
 
                 // Select the newly selected character.
                 if (selectedCharacter != null)
                 {
-                    //// Initialize the selected character if they haven't already.
-                    //if (!selectedCharacter.HasInitialized)
-                    //{
-                    //    selectedCharacter.Initialize(this);
-                    //}
                     selectedCharacter.OnSelect();
                 }
             }
@@ -130,37 +126,5 @@ namespace COTB.Combat.UI.CharacterMenu
             SelectedCharacterIndex += inputDir;
             SelectedCharacter = characters[SelectedCharacterIndex];
         }
-
-        /// <summary>
-        /// Loops an index around if it exceeds the bounds of a collection.
-        /// </summary>
-        /// <typeparam name="T">The type stored in the collection.</typeparam>
-        /// <param name="collection">THe collection to loop the index within.</param>
-        /// <param name="index">The current value of the index.</param>
-        /// <returns> The looped index value.</returns>
-        public static bool LoopIndex<T>(IEnumerable<T> collection, ref int index)
-        {
-            bool didLoop = false;
-            while (index >= collection.Count())
-            {
-                didLoop = true;
-                index -= collection.Count();
-            }
-            while (index < 0)
-            {
-                didLoop = true;
-                index += collection.Count();
-            }
-            return didLoop;
-        }
-
-        /// <summary>
-        /// Causes the currently selected character to perform some combat action.
-        /// </summary>
-        /// <param name="action">The action to perform.</param>
-        //public void PerformActionOnSelectedCharacter(CombatActionData action)
-        //{
-        //    SelectedCharacter.PerformAction(action);
-        //}
     }
 }

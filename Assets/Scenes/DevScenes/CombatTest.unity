@@ -751,12 +751,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Combat::COTB.Combat.Characters.CharacterCommander
   actor: {fileID: 1584960276}
-  actions:
-  - rid: 4539545158394839129
-  - rid: 4539545158394839149
-  - rid: 4539545201939316736
-  - rid: 4539545201939316737
-  - rid: 4539545201939316738
+  commands:
+  - rid: 4539545240676597901
+  - rid: 4539545240676597906
+  - rid: 4539545240676597904
   OnSelectEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -766,30 +764,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4539545158394839129
-      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
+    - rid: 4539545240676597901
+      type: {class: ActionCommand, ns: COTB.Combat.Characters, asm: Combat}
       data:
-        command: {fileID: 11400000, guid: 4a1a305993c49dd49b52f4b049071a26, type: 2}
-    - rid: 4539545158394839149
-      type: {class: SkillsListAction, ns: COTB.Combat.Characters, asm: Combat}
+        action: {fileID: 11400000, guid: 4a1a305993c49dd49b52f4b049071a26, type: 2}
+    - rid: 4539545240676597904
+      type: {class: ActionCommand, ns: COTB.Combat.Characters, asm: Combat}
       data:
-        actionName: Skills
-        actionIcon: {fileID: 0}
-        actionDescription: Use Skills
-        actionTags: 2
+        action: {fileID: 11400000, guid: ff5882959d72a6b48b1925d0d0d03048, type: 2}
+    - rid: 4539545240676597906
+      type: {class: SkillsCommand, ns: COTB.Combat.Characters, asm: Combat}
+      data:
+        commandName: Skills
+        commandIcon: {fileID: 0}
+        commandDescription: Use Skills
+        commandTags: 2
         character: {fileID: 1584960278}
-    - rid: 4539545201939316736
-      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
-      data:
-        command: {fileID: 0}
-    - rid: 4539545201939316737
-      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
-      data:
-        command: {fileID: 11400000, guid: ff5882959d72a6b48b1925d0d0d03048, type: 2}
-    - rid: 4539545201939316738
-      type: {class: CommandAction, ns: COTB.Combat.Characters, asm: Combat}
-      data:
-        command: {fileID: 0}
 --- !u!224 &1787314174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
@@ -1036,81 +1026,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457071648}
     m_Modifications:
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795709207485171509, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374897008605665341, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579533139975504284, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5055084778077756174, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_Name
-      value: CharacterActionMenu
+      value: CharacterCommandMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_Pivot.x
@@ -1190,30 +1108,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6669768715424688238, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115981832055111226, guid: 1fdc13ba59ae2e94fbed4379ca8d2f68, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
