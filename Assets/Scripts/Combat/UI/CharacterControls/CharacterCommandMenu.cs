@@ -12,6 +12,7 @@ using COTB.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace COTB.Combat.UI.CharacterMenu
 {
@@ -51,8 +52,14 @@ namespace COTB.Combat.UI.CharacterMenu
         /// <param name="character"></param>
         public void LoadCharacterMenu(CharacterCommander character)
         {
+            // Replace
+            EventSystem.current.SetSelectedGameObject(null);
+
             // If another character was previously loaded, disable that character's menu.
             UnloadCurrentCharacter();
+
+            //Replace
+            CloseAllSubMenus();
 
             loadedCharacter = character;
 
@@ -65,6 +72,11 @@ namespace COTB.Combat.UI.CharacterMenu
                 characterMenus.Add(character, CreateCharacterMenu(character));
             }
 
+            // TODO: Handle moving the selecction of instance buttons.
+            // TODO: Handle closing and opening appropriate sub menus.
+
+            // For now, just close all sub menus and select attack when changing targets.
+
             ToggleButtons(characterMenus[character], true);
 
             // Load the full menu if it isnt already loaded.
@@ -72,6 +84,10 @@ namespace COTB.Combat.UI.CharacterMenu
             {
                 Load();
             }
+
+            // Replace
+            initialButton.Select();
+
             Refresh(character);
         }
 
